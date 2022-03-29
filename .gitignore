@@ -1,4 +1,4 @@
 .idea 
 .vscode
 tokens
-.node_modules
+node_modules
