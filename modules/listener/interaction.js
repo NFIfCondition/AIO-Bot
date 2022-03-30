@@ -32,10 +32,9 @@ module.exports = function interaction(bot) {
                   await interaction.reply({embeds: [helpembed]})
             } else if (interaction.commandName === 'clearchat'){
                 http(interaction.guildId, "modules").then(response =>{
-                  guildid = interaction.guildId
                   if (active(response.data, chatclear)){
                       http(interaction.guildId, "module/chatclear").then(responseroles =>{
-                          roles = responseroles.data[0].roleid
+                          const roles = responseroles.data[0].roleid
                           if (roles.includes(roles)){
                               bot.channels.cache.get(interaction.channelId).bulkDelete(interaction.options._hoistedOptions[0].value, true)
                               const cleared = new MessageEmbed()

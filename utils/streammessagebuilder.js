@@ -1,7 +1,11 @@
+const streamerclass = require('./getstreamer.js')
+const {MessageEmbed} = require('discord.js')
+
+
 module.exports = function streamMessageBuilder(streamer, channel, bot){
-    getStreamer(streamer).then(response =>{
+    streamerclass.getStreamer(streamer).then(response =>{
         console.log(response.data.data)
-        getStreamerbyid(response.data.data[0].user_id).then(responseid =>{
+        streamerclass.getStreamerbyid(response.data.data[0].user_id).then(responseid =>{
             const streamerMSG = new MessageEmbed()
                     .setColor('#0099ff')
                     .setTitle(response.data.data[0].title)

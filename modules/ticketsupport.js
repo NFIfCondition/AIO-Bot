@@ -1,7 +1,3 @@
-const { PermissionOverwrites } = require("discord.js");
-const guildmemberjoin = require("./listener/guildmemberjoin");
-const { Permissions } = require('discord.js');
-
 module.exports = {
         create : async function(bot, name,  guildid, channelsectionid, teamsupportroleids, teamadminroleids, userid){
                 const guild = bot.guilds.cache.get(guildid)

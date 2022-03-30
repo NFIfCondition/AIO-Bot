@@ -1,31 +1,23 @@
 const Discord = require('discord.js');
-const { Client, Intents } = require('discord.js');
-const {MessageEmbed } = require('discord.js')
 const passtokens = require('./utils/tokens.js')
 const bot = new Discord.Client({ intents: 32767 });
 
-const tclientkey = passtokens.tclientkey()
-const tclientSecret = passtokens.tclientSecret()
-const authkey = passtokens.authkey()
 const dcclientid = passtokens.dcclientid()
 const token = passtokens.token()
-const secret = passtokens.secret()
-
-const prefix = 'alicia-'
 
 //COMMANDS//
-const ping = require('./commands/aliciahelp.js')
+require('./commands/aliciahelp.js')
 
 //MODULES&//
-const interaction = new (require('./modules/listener/interaction.js'))(bot);
-const websocket = new (require('./modules/listener/websocket.js'))(bot);
-const memberjoin = new (require('./modules/listener/guildmemberjoin.js'))(bot);
-const messagerListener = new (require('./modules/listener/messagecreate.js'))(bot);
-const ticketsupport = require('./modules/ticketsupport.js');
+new (require('./modules/listener/interaction.js'))(bot);
+new (require('./modules/listener/websocket.js'))(bot);
+new (require('./modules/listener/guildmemberjoin.js'))(bot);
+new (require('./modules/listener/messagecreate.js'))(bot);
+require('./modules/ticketsupport.js');
 
-const http = require('./utils/aliciaapi.js')
-const active = require('./utils/moduleactive.js')
-const replace = require('./utils/replaceVars.js')
+require('./utils/aliciaapi.js')
+require('./utils/moduleactive.js')
+require('./utils/replaceVars.js')
 console.log("test" ,token) 
 bot.on('ready', () =>{  
 	
@@ -44,79 +36,8 @@ bot.on('ready', () =>{
     });
 })
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 const { REST } = require('@discordjs/rest');
 const { Routes } = require('discord-api-types/v9');
-const { SlashCommandBuilder } = require('@discordjs/builders');
 const fs = require('node:fs');
 
 const commands = []

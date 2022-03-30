@@ -1,5 +1,6 @@
-const spam = require('./../../utils/mids.js').spamfilter
-const aliciaspam = require('./../../utils/mids.js').aliciaspamfilter
+//const spam = require('./../../utils/mids.js').spamfilter
+//const aliciaspam = require('./../../utils/mids.js').aliciaspamfilter
+const {MessageEmbed } = require('discord.js')
 
 module.exports = function messageListener(bot){
     bot.on('messageCreate', message => {

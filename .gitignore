@@ -2,3 +2,4 @@
 .vscode
 tokens.js
 node_modules
+.eslintrc.json
