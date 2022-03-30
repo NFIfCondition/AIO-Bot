@@ -1,7 +1,15 @@
 const Discord = require('discord.js');
 const { Client, Intents } = require('discord.js');
 const {MessageEmbed } = require('discord.js')
+const passtokens = require('./utils/tokens.js')
 const bot = new Discord.Client({ intents: 32767 });
+
+const tclientkey = passtokens.tclientkey()
+const tclientSecret = passtokens.tclientSecret()
+const authkey = passtokens.authkey()
+const dcclientid = passtokens.dcclientid()
+const token = passtokens.token()
+const secret = passtokens.secret()
 
 const prefix = 'alicia-'
 
@@ -18,8 +26,9 @@ const ticketsupport = require('./modules/ticketsupport.js');
 const http = require('./utils/aliciaapi.js')
 const active = require('./utils/moduleactive.js')
 const replace = require('./utils/replaceVars.js')
-
-bot.on('ready', () =>{   
+console.log("test" ,token) 
+bot.on('ready', () =>{  
+	
 	//ticketsupport.create(bot, "ifcondition test", "857332651531042856", "863475927031349268", "857333076707246131", "857332684450693120")
     //ticketsupport.add(bot, "857332651531042856", "958063131265994782", "692070395662041189")
 	//ticketsupport.remove(bot, "857332651531042856", "958063131265994782", "692070395662041189")
@@ -109,7 +118,6 @@ const { REST } = require('@discordjs/rest');
 const { Routes } = require('discord-api-types/v9');
 const { SlashCommandBuilder } = require('@discordjs/builders');
 const fs = require('node:fs');
-
 
 const commands = []
 const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
