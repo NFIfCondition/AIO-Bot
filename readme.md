@@ -28,10 +28,10 @@ Dieser Bot ist eigentum von https://Ionic-Host.de https://alicia.ionic-host.de
 Der Bot Ist komplett Kostenlos und frei für alle und aktuell noch in der Beta:
 
 ```
-https://alicia.ionic-host.de/beta
-Bewerbung senden und erklären warum genau du den bot in der Beta haben solltest
-Auf Antwort warten kann bis zu einer Woche dauern
-Bei zusage ist der Bot inerhalb 2-3 Tage über das Interface Einladbar und einstellbar
+- https://alicia.ionic-host.de/beta
+- Bewerbung senden und erklären warum genau du den bot in der Beta haben solltest
+- Auf Antwort warten kann bis zu einer Woche dauern
+- Bei zusage ist der Bot inerhalb 2-3 Tage über das Interface Einladbar und einstellbar
 ```
 
 ## Developer
