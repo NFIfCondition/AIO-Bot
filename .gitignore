@@ -1,5 +1,5 @@
 .idea 
 .vscode
-tokens.js
+tokens.ts
 node_modules
 build
