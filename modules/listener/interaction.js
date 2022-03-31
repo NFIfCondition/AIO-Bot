@@ -1,10 +1,10 @@
 const chatclear = require('./../../utils/mids.js').chatclear
 const http = require('./../../utils/aliciaapi.js')
 const active = require('./../../utils/moduleactive.js')
-const ticketsupport = require('./../../modules/ticketsupport.js')
+const ticketsupport = require('./../../modules/ticketsupport.ts')
 const {MessageEmbed } = require('discord.js');
 
-module.exports = function interaction(bot) {
+export function interaction(bot) {
         bot.on('interactionCreate', async (interaction) => {
             if (!interaction.isCommand()) return;
             if (interaction.commandName === 'alicia-help') {

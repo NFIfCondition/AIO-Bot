@@ -10,11 +10,14 @@
   },
   "scripts": {
     "lint": "eslint commands/*.js modules/listener/*.js modules/*.js utils/*.js *.js",
-    "lintfix": "eslint --fix discordbot/*.js --ext"
+    "lintfix": "eslint --fix discordbot/*.js --ext",
+    "build": "tsc",
+    "check": "tsc --noEmit --pretty"
   },
   "eslintConfig": {},
   "devDependencies": {
     "eslint": "8.12.0",
-    "discord-api-types": "0.30.0"
+    "discord-api-types": "0.30.0",
+    "typescript": "4.6.3"
   }
 }

@@ -1,10 +1,10 @@
+import Discord from 'discord.js'
+import {Server} from 'ws'
+import { MessageEmbed } from 'discord.js';
+const wss = new Server({ port: 8080 });
+var botobjc: Discord.Client;
 
-const {MessageEmbed } = require('discord.js')
-const WebSocketServer = require('ws').Server;
-const wss = new WebSocketServer({ port: 8080 });
-var botobjc;
-
-module.exports = function websocket(bot){
+module.exports = function websocket(bot: Discord.Client){
     botobjc = bot
 }
 
@@ -17,7 +17,7 @@ wss.on('connection', function connection(ws) {
   });
 });
 
-function messagehandler(msg, bot){
+function messagehandler(msg: string, bot: Discord.Client){
     let ctx = msg.split(" ")
     if (ctx[3] == 'true'){
         let ctx = msg.split(" ")
@@ -37,9 +37,14 @@ function messagehandler(msg, bot){
                 )
                 .setTimestamp()
                 .setFooter({text:'Alicia-Bot by Ionic-Host.de'});
-            bot.channels.cache.get(channelid).send({embeds: [helpembed]}).then(embedMessage => {
-            embedMessage.react(react);
-        });
+            const botobjc = bot.channels.cache.get(channelid)
+
+            if (botobjc && 'send' in botobjc){
+                botobjc.send({embeds: [helpembed]}).then(embedMessage => {
+                    embedMessage.react(react);
+                });
+            }
+
     } else if (ctx[3] == 'false'){
         let channelid = ctx[1]
         let title = ctx[2]
@@ -56,6 +61,11 @@ function messagehandler(msg, bot){
                 )
                 .setTimestamp()
                 .setFooter({text:'Alicia-Bot by Ionic-Host.de'});
-        bot.channels.cache.get(channelid).send({embeds: [helpembed]});
+
+                const botobjc = bot.channels.cache.get(channelid)
+
+                if (botobjc && 'send' in botobjc){
+                    botobjc.send({embeds: [helpembed]});
+                }
     }
 }

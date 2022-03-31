@@ -1,11 +1,13 @@
+import Discord from 'discord.js'
+import { CustomDiscordClient } from '../CustomDiscordClient'
 const streamerclass = require('./getstreamer.js')
 const {MessageEmbed} = require('discord.js')
 
 
-module.exports = function streamMessageBuilder(streamer, channel, bot){
-    streamerclass.getStreamer(streamer).then(response =>{
+export function streamMessageBuilder(streamer: string, channel: string, bot: Discord.Client){
+    streamerclass.getStreamer(streamer).then((response: any) =>{
         console.log(response.data.data)
-        streamerclass.getStreamerbyid(response.data.data[0].user_id).then(responseid =>{
+        streamerclass.getStreamerbyid(response.data.data[0].user_id).then((responseid: { data: { data: { profile_image_url: any }[] } }) =>{
             const streamerMSG = new MessageEmbed()
                     .setColor('#0099ff')
                     .setTitle(response.data.data[0].title)
@@ -17,8 +19,12 @@ module.exports = function streamMessageBuilder(streamer, channel, bot){
                     )
                     .setImage(response.data.data[0].thumbnail_url.replace("{width}", "1920").replace("{height}", "1080"))
                     .setTimestamp()
-                    .setFooter({text:'Alicia-Bot by Ionic-Host.de', iconURL:'https://ionic-host.de/assets/img/ionic.png'});
-            bot.channels.cache.get(channel).send({embeds: [streamerMSG]});
+
+                const channelOBJ = bot.channels.cache.get(channel)
+                if (channelOBJ && 'send' in channelOBJ){
+                    channelOBJ.send({embeds: [streamerMSG]});
+                }
+            
         })  
     })
 }

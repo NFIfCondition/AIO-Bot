@@ -1,6 +1,9 @@
-const { SlashCommandBuilder } = require('@discordjs/builders');
-module.exports = {
-    data: new SlashCommandBuilder()
+import { SlashCommandSubcommandsOnlyBuilder } from "@discordjs/builders";
+import { SlashCommandSubcommandBuilder } from "@discordjs/builders";
+import { SlashCommandBuilder } from "@discordjs/builders";
+
+export const TICKETSUPPORT_COMMAND : SlashCommandSubcommandsOnlyBuilder = 
+new SlashCommandBuilder()
         .setName('ticketsupport')
         .setDescription('Ticket Support')
         .addSubcommand(subcommand =>
@@ -30,4 +33,3 @@ module.exports = {
             subcommand
                 .setName('delete')
                 .setDescription('Löscht das Ticket'))
-};
