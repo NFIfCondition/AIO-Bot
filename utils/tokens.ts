@@ -1,9 +1,9 @@
 const tclientkey1 = '5p7wcg9iy8umnjgtoqkob2d8q9ixs6'
-const tclientSecret1 = 'v1xwtotsfpgbnnl4dc9q40nhn8s8c3'
-const authkey1 = 'Bearer 4tvd8894xzd0jw8m1jairda2c0a9nr'
+const tclientSecret1 = 'x0z8oxxfktmvmfccti7hnnvq3v0v3o'
+const authkey1 = 'Bearer uxrukknehqqauqjym6qf83n5t6k21w'
 const dcclientid1 = '934573134521176114'
-const token1 = 'OTM0NTczMTM0NTIxMTc2MTE0.YeyDDg.iaVhVdv2LLzl5Ww9n7kDfBWIVzQ'
-const secret1 = '-QCBA9Fvy5Go9qeROu3fyr0tqwcKnsSQ'
+const token1 = 'OTM0NTczMTM0NTIxMTc2MTE0.YeyDDg.pRc4ptrhMxNC2AbmDEH-D7aJq5c'
+const secret1 = 'AAHf2nipP5eCiZTGzx-JnjfMmt4-HTxY'
 
 export = {
 
