@@ -1,8 +1,8 @@
-name: run Alica-AIO-Bot
+name: run AIO-Bot
 on: [push]
 
 jobs:
-  aliciapush:
+  aiopush:
     name: Install
     runs-on: ubuntu-latest
     steps:
