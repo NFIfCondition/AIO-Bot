@@ -1,4 +1,3 @@
-import Discord from 'discord.js'
 import { CustomDiscordClient } from './CustomDiscordClient';
 import passtokens from './utils/tokens'
 const bot = new CustomDiscordClient({ intents: 32767 });

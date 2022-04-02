@@ -1,8 +1,10 @@
-//const spam = require('./../../utils/mids.js').spamfilter
-//const aliciaspam = require('./../../utils/mids.js').aliciaspamfilter
-const {MessageEmbed } = require('discord.js')
+import {
+    CustomDiscordClient,
+} from './../../index'
 
-module.exports = function messageListener(bot){
+import { MessageEmbed } from 'discord.js';
+
+export function messageListener(bot: CustomDiscordClient){
     bot.on('messageCreate', message => {
         let parts = message.content.split(' ');
         if (parts[0] == "/YWxpY2lh"){

@@ -1,11 +1,18 @@
-const axios = require('axios');
+import axios from "axios";
+
+
 const tokens = require('./tokens.js')
 
 const client = tokens.tclientkey
 const auth = tokens.authkey
 
-module.exports = {
-    getStreamer : function(streamer){
+export interface GetStreamerInfos{
+    getStreamer: (streamer: string) => Promise<string>,
+    getStreamerbyId: (id: number) => Promise<string>,
+}
+
+export const getStreamers: GetStreamerInfos = {
+    getStreamer : function(streamer: string){
         const api = `https://api.twitch.tv/helix/streams/?user_login=` + streamer;
         let config = {
             headers: {
@@ -15,7 +22,7 @@ module.exports = {
         }
         return axios.get(api, config);
     },
-    getStreamerbyid : function(id){
+    getStreamerbyId : function(id: number){
         const api = 'https://api.twitch.tv/helix/users/?id=' + id ;
         let config = {
             headers: {

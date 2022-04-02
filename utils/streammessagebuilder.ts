@@ -1,13 +1,12 @@
-import Discord from 'discord.js'
 import { CustomDiscordClient } from '../CustomDiscordClient'
 const streamerclass = require('./getstreamer.js')
 const {MessageEmbed} = require('discord.js')
 
 
-export function streamMessageBuilder(streamer: string, channel: string, bot: Discord.Client){
+export function streamMessageBuilder(streamer: string, channel: string, bot: CustomDiscordClient){
     streamerclass.getStreamer(streamer).then((response: any) =>{
         console.log(response.data.data)
-        streamerclass.getStreamerbyid(response.data.data[0].user_id).then((responseid: { data: { data: { profile_image_url: any }[] } }) =>{
+        streamerclass.getStreamerbyid(response.data.data[0].user_id).then(async (responseid: { data: { data: { profile_image_url: any }[] } }) =>{
             const streamerMSG = new MessageEmbed()
                     .setColor('#0099ff')
                     .setTitle(response.data.data[0].title)
@@ -20,8 +19,8 @@ export function streamMessageBuilder(streamer: string, channel: string, bot: Dis
                     .setImage(response.data.data[0].thumbnail_url.replace("{width}", "1920").replace("{height}", "1080"))
                     .setTimestamp()
 
-                const channelOBJ = bot.channels.cache.get(channel)
-                if (channelOBJ && 'send' in channelOBJ){
+                const channelOBJ = await bot.getChannelFromCache(channel)
+                if (channelOBJ){
                     channelOBJ.send({embeds: [streamerMSG]});
                 }
             

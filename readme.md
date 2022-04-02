@@ -1,6 +1,6 @@
-![command-line-pic](https://alicia.ionic-host.de/assets/img/code.png)
+![command-line-pic](https://aio.ionic-host.de/assets/img/code.png)
 
-# Alicia AIO Discord Bot
+# AIO Discord Bot
 
 ---
 
@@ -28,7 +28,7 @@ Dieser Bot ist eigentum von https://Ionic-Host.de https://alicia.ionic-host.de
 Der Bot Ist komplett Kostenlos und frei für alle und aktuell noch in der Beta:
 
 ```
-- https://alicia.ionic-host.de/beta
+- https://aio.ionic-host.de/beta
 - Bewerbung senden und erklären warum genau du den bot in der Beta haben solltest
 - Auf Antwort warten kann bis zu einer Woche dauern
 - Bei zusage ist der Bot inerhalb 2-3 Tage über das Interface Einladbar und einstellbar
@@ -44,4 +44,4 @@ Email Address: info@ionic-host.de
 
 [Github Profile](https://github.com/nfifcondition)
 
-[Github Repo](https://github.com/https://github.com/PublicVoidEnable/Alicia-AIO-Bot)
+[Github Repo](https://github.com/https://github.com/PublicVoidEnable/AIO-Bot)

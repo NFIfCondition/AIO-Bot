@@ -1,10 +1,12 @@
 import Discord from 'discord.js'
 import {Server} from 'ws'
 import { MessageEmbed } from 'discord.js';
-const wss = new Server({ port: 8080 });
-var botobjc: Discord.Client;
+import { CustomDiscordClient } from '../../CustomDiscordClient';
 
-module.exports = function websocket(bot: Discord.Client){
+const wss = new Server({ port: 8080 });
+var botobjc: CustomDiscordClient;
+
+module.exports = function websocket(bot: CustomDiscordClient){
     botobjc = bot
 }
 
@@ -17,7 +19,7 @@ wss.on('connection', function connection(ws) {
   });
 });
 
-function messagehandler(msg: string, bot: Discord.Client){
+async function messagehandler(msg: string, bot: CustomDiscordClient){
     let ctx = msg.split(" ")
     if (ctx[3] == 'true'){
         let ctx = msg.split(" ")
@@ -37,14 +39,13 @@ function messagehandler(msg: string, bot: Discord.Client){
                 )
                 .setTimestamp()
                 .setFooter({text:'Alicia-Bot by Ionic-Host.de'});
-            const botobjc = bot.channels.cache.get(channelid)
+            const botobjc = await bot.getChannelFromCache(channelid)
 
-            if (botobjc && 'send' in botobjc){
-                botobjc.send({embeds: [helpembed]}).then(embedMessage => {
+            if (botobjc){
+                botobjc.send({embeds: [helpembed]}).then((embedMessage: any) => {
                     embedMessage.react(react);
                 });
             }
-
     } else if (ctx[3] == 'false'){
         let channelid = ctx[1]
         let title = ctx[2]
@@ -62,9 +63,9 @@ function messagehandler(msg: string, bot: Discord.Client){
                 .setTimestamp()
                 .setFooter({text:'Alicia-Bot by Ionic-Host.de'});
 
-                const botobjc = bot.channels.cache.get(channelid)
+                const botobjc = await bot.getChannelFromCache(channelid)
 
-                if (botobjc && 'send' in botobjc){
+                if (botobjc){
                     botobjc.send({embeds: [helpembed]});
                 }
     }

@@ -1,8 +1,16 @@
 import {CategoryChannelResolvable, Permissions} from 'discord.js'
 import { CustomDiscordClient } from '../CustomDiscordClient'
-import Discord from 'discord.js'
 
-module.exports = {
+export interface TicketSupportInterface{
+        create: (bot: CustomDiscordClient, name: string,  guildid: string, channelsectionid: string, teamsupportroleids: string, teamadminroleids: string, userid: string) => void
+        add:(bot: CustomDiscordClient, guildid: string, channelid: string, userid: string) => void
+        remove: (bot: CustomDiscordClient, guildid: string, channelid: string, userid: string) => void
+        close: (bot: CustomDiscordClient, channelid: string, userid: string) => void
+        archive: (bot: CustomDiscordClient, channelid: string, sectionid: string) => void
+        delete: (bot: CustomDiscordClient, channelid: string) => void
+}
+
+export const ticketsupport: TicketSupportInterface = {
         create : async function(bot: CustomDiscordClient, name: string,  guildid: string, channelsectionid: string, teamsupportroleids: string, teamadminroleids: string, userid: string){
                 const guild = bot.guilds.cache.get(guildid)
                 const cat = await bot.fetchChannel(channelsectionid)
@@ -67,8 +75,8 @@ module.exports = {
                         channel.setParent(section as CategoryChannelResolvable)
                 }
         },
-        delete : async function(bot: Discord.Client, channelid: string){
-                const channel = await bot.channels.fetch(channelid)
+        delete : async function(bot: CustomDiscordClient, channelid: string){
+                const channel = await bot.fetchChannel(channelid)
                 if (channel){
                         channel.delete()
                 }
