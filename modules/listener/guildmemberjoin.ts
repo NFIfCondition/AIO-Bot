@@ -1,24 +1,23 @@
 // MEMBER JOIN MESSAGE
 import { 
-    CustomDiscordClient
+    CustomDiscordClient,
+    api,
+    ModuleActive,
+    ModuleNames,
+    ModuleNamesToID,
+    replace
 } from './../../index'
-
-const http = require('./../../utils/aliciaapi.js')
-const active = require('./../../utils/moduleactive.js')
-const memberjoin = require('./../../utils/mids.js').joinmessage
-const {MessageEmbed } = require('discord.js')
-
-const replace = require('./../../utils/replaceVars');
+import { MessageEmbed } from 'discord.js';
 
 export function join(bot: CustomDiscordClient){
     bot.on('guildMemberAdd', member =>{
-    var guildid = member.guild.id
-    http(guildid, "modules").then((response: any ) => {
-            if (active(response.data, memberjoin)){
-                http(guildid, "module/joinmessage").then(async(response: any) =>{
-                    var title = replace(response.data[0].title, "$user, $date, $time, $useravatar",   member.displayName + ", " + new Date("DD-MM-YYYY") +", "+ new Date("HH:MM:SS") +", "+ member.avatarURL)   
-                    var subtitle = replace(response.data[0].subtitle, "$user, $date, $time, $useravatar", member.displayName + ", " + new Date("DD-MM-YYYY") +", "+ new Date("HH:MM:SS") +", "+ member.avatarURL)
-                    var msg = replace(response.data[0].message, "$user, $date, $time, $useravatar", member.displayName + ", " + new Date("DD-MM-YYYY") +", "+ new Date("HH:MM:SS") +", "+ member.avatarURL)
+    const guildid = member.guild.id
+    api.getModules(guildid).then((response: any ) => {
+            if (ModuleActive(response.data, ModuleNamesToID.Joinmessage)){
+                api.getModule(guildid, ModuleNames.Joinmessage).then(async(response: any) =>{
+                    const title = replace(response.data[0].title, ["$user", "$date", "$time", "$useravatar"],   [member.displayName + "," + new Date("DD-MM-YYYY") + "," + new Date("HH:MM:SS") + "," + member.avatarURL])   
+                    const subtitle = replace(response.data[0].subtitle, ["$user", "$date", "$time", "$useravatar"], [member.displayName + "," + new Date("DD-MM-YYYY") + "," + new Date("HH:MM:SS") + "," + member.avatarURL])
+                    const msg = replace(response.data[0].message, ["$user", "$date", "$time", "$useravatar"], [member.displayName + "," + new Date("DD-MM-YYYY") + "," + new Date("HH:MM:SS") + "," + member.avatarURL])
 
                     const message = new MessageEmbed()
                         .setColor('#0099ff')
@@ -36,7 +35,7 @@ export function join(bot: CustomDiscordClient){
                     const channel = await bot.getChannelFromCache(response.data[0].channel)
                         
                     if (channel){
-                        channel.send(message)
+                        channel.send({embeds: [message]})
                     }
 
                     console.log("Join Message auf " + response.data[0].guildid);

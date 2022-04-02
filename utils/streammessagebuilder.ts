@@ -1,12 +1,15 @@
-import { CustomDiscordClient } from '../CustomDiscordClient'
-const streamerclass = require('./getstreamer.js')
-const {MessageEmbed} = require('discord.js')
+import{
+    CustomDiscordClient,
+    getStreamers,
+} from './../index'
+
+import { MessageEmbed } from 'discord.js'
 
 
 export function streamMessageBuilder(streamer: string, channel: string, bot: CustomDiscordClient){
-    streamerclass.getStreamer(streamer).then((response: any) =>{
+    getStreamers.getStreamer(streamer).then((response: any) =>{
         console.log(response.data.data)
-        streamerclass.getStreamerbyid(response.data.data[0].user_id).then(async (responseid: { data: { data: { profile_image_url: any }[] } }) =>{
+        getStreamers.getStreamerbyId(response.data.data[0].user_id).then(async (responseid: any) =>{
             const streamerMSG = new MessageEmbed()
                     .setColor('#0099ff')
                     .setTitle(response.data.data[0].title)

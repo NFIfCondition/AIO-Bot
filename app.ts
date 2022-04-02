@@ -10,14 +10,18 @@ import { CLEARCHAT_COMMAND } from './commands/clearchat'
 import { TICKETSUPPORT_COMMAND } from './commands/ticketsupport'
 
 //MODULES&//
-new (require('./modules/listener/interaction.js'))(bot);
-new (require('./modules/listener/websocket.ts'))(bot);
-new (require('./modules/listener/guildmemberjoin.js'))(bot);
-new (require('./modules/listener/messagecreate.js'))(bot);
-require('./modules/ticketsupport.ts');
-require('./utils/aliciaapi.js')
-require('./utils/moduleactive.js')
-require('./utils/replaceVars.js')
+import { interaction } from './modules/listener/interaction';
+import {websocket} from './modules/listener/websocket';
+import {join} from './modules/listener/guildmemberjoin';
+import {messageListener} from './modules/listener/messagecreate'
+import './modules/ticketsupport'
+import './utils/aliciaapi.js'
+import './utils/moduleactive.js'
+import './utils/replaceVars.js'
+messageListener(bot)
+join(bot)
+interaction(bot)
+websocket(bot)
 
 bot.on('ready', () =>{
 	if (bot.user){
@@ -31,9 +35,9 @@ bot.on('ready', () =>{
 	}
 })
 
-const { REST } = require('@discordjs/rest');
-const { Routes } = require('discord-api-types/v9');
-const fs = require('node:fs');
+import { REST } from "@discordjs/rest"
+import { Routes } from 'discord-api-types/v9'
+//const fs = require('node:fs');
 
 /*const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.ts'));
 

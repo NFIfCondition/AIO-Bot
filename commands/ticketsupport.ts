@@ -1,5 +1,4 @@
 import { SlashCommandSubcommandsOnlyBuilder } from "@discordjs/builders";
-import { SlashCommandSubcommandBuilder } from "@discordjs/builders";
 import { SlashCommandBuilder } from "@discordjs/builders";
 
 export const TICKETSUPPORT_COMMAND : SlashCommandSubcommandsOnlyBuilder = 

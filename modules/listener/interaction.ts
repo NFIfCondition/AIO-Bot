@@ -2,14 +2,11 @@ import{
     CustomDiscordClient,
     ticketsupport,
     ModuleNames,
-    ApiRequest
+    api,
+    ModuleActive
 } from './../../index'
 import { MessageEmbed } from 'discord.js'
-import { api } from '../../utils/aioapi';
-
-
-const active = require('./../../utils/moduleactive.js')
-
+import { ModuleNamesToID } from '../../utils/mids';
 
 export function interaction(bot: CustomDiscordClient) {
         bot.on('interactionCreate', async (interaction) => {
@@ -40,8 +37,8 @@ export function interaction(bot: CustomDiscordClient) {
             } else if (interaction.commandName === 'clearchat'){
                 if (interaction.guildId){
                     api.getModules(interaction.guildId).then((response: any) =>{
-                        if (active(response.data, ModuleNames.Chatclear)){
-                            api.getModule(interaction.guildId as string, ModuleNames.Chatclear).then(async (responseroles: any) =>{
+                        if (ModuleActive(response.data, ModuleNamesToID.Chatclear)){
+                            api.getModule(interaction.guildId as string, "chatclear").then(async (responseroles: any) =>{
                                 const roles = responseroles.data[0].roleid
                                 if (roles.includes(roles)){
                                   const channel = await bot.getChannelFromCache(interaction.channelId)

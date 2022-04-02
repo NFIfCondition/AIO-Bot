@@ -2,7 +2,7 @@ import https from 'https';
 import axios from 'axios';
 
 export interface ApiRequest{
-    getModule: (gid: string, module: number)=> Promise<string>,
+    getModule: (gid: string, module: string)=> Promise<string>,
     updateModule: (module: number, objName: object, option: string)=> Promise<string>
     getModules: (gid: string) => Promise<string>
 }
@@ -10,12 +10,12 @@ export interface ApiRequest{
 export const api: ApiRequest = {
     getModules: function(gid: string){
         https.globalAgent.options.rejectUnauthorized = false;
-        var url = `https://api.ionic-host.de/guild/${gid}/modules`
+        const url = `https://api.ionic-host.de/guild/${gid}/modules`
         return axios.get(url)
     },
-    getModule : function(gid: string, module: number){
+    getModule : function(gid: string, module: string){
         https.globalAgent.options.rejectUnauthorized = false;
-        var url = `https://api.ionic-host.de/guild/${gid}/module/${module}`
+        const url = `https://api.ionic-host.de/guild/${gid}/module/${module}`
         return axios.get(url)
     },
     updateModule : function(module: number, objName: object, option: string){

@@ -1,4 +1,4 @@
-export enum ModuleNames{
+export enum ModuleNamesToID{
     Chatclear = 1,
     Giveaway = 2,
     Reactrole = 3,
@@ -10,7 +10,19 @@ export enum ModuleNames{
     Streamer = 9,
 }
 
-export function moduleactive(response: any, module: number){
+export enum ModuleNames{
+    Chatclear = "chatclear",
+    Giveaway = "giveaway",
+    Reactrole = "reactrole",
+    Spamfilter = "spamfilter",
+    Speaksupport = "speaksupport",
+    Ticketsupport = "ticketsupport",
+    Joinmessage = "joinmessage",
+    Aiospamfilter = "aiospamfilter",
+    Streamer = "streamer",
+}
+
+export function ModuleActive(response: any, module: number){
     for (const key in response){
         if (response[key].mid == module){
             return true;

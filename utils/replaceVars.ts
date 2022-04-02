@@ -1,14 +1,8 @@
-import replaceOnce from "replace-once"
-
-export function replaceVariables(msg: string, replaceval: string, replaces: string){
-    var str = msg;
-    var find = replaceval.split(",");
-    var replace = replaces.split(",");
-    return replaceOnce(str, find, replace, 'gi');
+export interface MultiReplace{
+	replace: (text: string, toBeReplacedTexts: string[], replacingTexts: string[]) => string
 }
 
-
-function MultiReplace(text: string, toBeReplacedTexts: string[], replacingTexts: string[])
+export function replace(text: string, toBeReplacedTexts: string[], replacingTexts: string[])
 {
 	let replaced = text
 	if (replacingTexts.length < toBeReplacedTexts.length)
@@ -16,7 +10,7 @@ function MultiReplace(text: string, toBeReplacedTexts: string[], replacingTexts:
 		throw "Kann keine Massen-Ersetzung mit weniger Werten als benötigt durchführen."
 	}
 	
-	for (var i in toBeReplacedTexts) {
+	for (const i in toBeReplacedTexts) {
 		replaced = replaced.replace(toBeReplacedTexts[i],replacingTexts[i])
 	}
 	

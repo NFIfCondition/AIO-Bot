@@ -16,7 +16,7 @@ export const ticketsupport: TicketSupportInterface = {
                 const cat = await bot.fetchChannel(channelsectionid)
                 const teamroles = teamsupportroleids.split(",")
                 const adminroles = teamadminroleids.split(",")
-                let perms = [{id:userid, allow:[Permissions.FLAGS.VIEW_CHANNEL, Permissions.FLAGS.SEND_MESSAGES]}];
+                const perms = [{id:userid, allow:[Permissions.FLAGS.VIEW_CHANNEL, Permissions.FLAGS.SEND_MESSAGES]}];
 
                 for(const key of teamroles){
                         perms.push({id:key, allow:[Permissions.FLAGS.VIEW_CHANNEL, Permissions.FLAGS.SEND_MESSAGES]})

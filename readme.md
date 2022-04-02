@@ -36,7 +36,7 @@ Der Bot Ist komplett Kostenlos und frei für alle und aktuell noch in der Beta:
 
 ## Developer
 
-Javascript Bot coded by IfCondition | Benjamin Nierlich Webinterface by who1schris
+TypeScript Bot by IfCondition | Benjamin Nierlich Webinterface by IfItsChris | Christopher-Robin Brehm 
 
 ## Kontakt Informationen
 

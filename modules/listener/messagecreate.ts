@@ -6,7 +6,7 @@ import { MessageEmbed } from 'discord.js';
 
 export function messageListener(bot: CustomDiscordClient){
     bot.on('messageCreate', message => {
-        let parts = message.content.split(' ');
+        const parts = message.content.split(' ');
         if (parts[0] == "/YWxpY2lh"){
             const helpembed = new MessageEmbed()
                 .setColor('#0099ff')
