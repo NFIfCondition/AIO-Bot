@@ -1,9 +1,9 @@
 import { CustomDiscordClient } from './CustomDiscordClient';
-import passtokens from './utils/tokens'
 const bot = new CustomDiscordClient({ intents: 32767 });
 
-const dcclientid = passtokens.dcclientid()
-const token = passtokens.token()
+import tokens from './utils/tokens'
+const dcclientid = tokens.dcclientid()
+const token = tokens.token()
 
 import { HELP_COMMAND } from './commands/aliciahelp'
 import { CLEARCHAT_COMMAND } from './commands/clearchat'

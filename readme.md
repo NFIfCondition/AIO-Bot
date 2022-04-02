@@ -4,7 +4,7 @@
 
 ---
 
-<a href="https://img.shields.io/badge/JavaScipt-100%25-yellow"><img alt="JavaScript use" src="https://img.shields.io/badge/JavaScipt-100%25-yellow"></a> <a href="https://img.shields.io/badge/Used-Node.js-red"><img alt="Node.js use" src="https://img.shields.io/badge/Used-Node.js-red"></a> <a href="https://img.shields.io/badge/npm-discord.js-orange"><img alt="npm package discord.js" src="https://img.shields.io/badge/npm-discord.js-orange"></a>
+<a href="https://img.shields.io/badge/JavaScipt-100%25-yellow"><img alt="TypeScript use" src="https://img.shields.io/badge/TypeScript-100%25-blue"></a> <a href="https://img.shields.io/badge/Used-Node.js-red"><img alt="Node.js use" src="https://img.shields.io/badge/Used-Node.js-red"></a> <a href="https://img.shields.io/badge/npm-discord.js-orange"><img alt="npm package discord.js" src="https://img.shields.io/badge/npm-discord.js-orange"></a>
 
 ## Beschreibung
 
@@ -12,7 +12,7 @@ Ein `Discord Bot` der alle Funktionen anderer bots in einen bringt und damit die
 
 Dieser Code ist zur transparenz da und um freiwilige Verbesserungen einzureichen. Und nicht um diesen selber zu benutzen.
 
-Dieser Bot ist eigentum von https://Ionic-Host.de https://alicia.ionic-host.de 
+Dieser Bot ist eigentum von https://Ionic-Host.de https://aio.ionic-host.de 
 
 ## Erklärung
 
@@ -43,5 +43,6 @@ TypeScript Bot by IfCondition | Benjamin Nierlich Webinterface by IfItsChris | C
 Email Address: info@ionic-host.de
 
 [Github Profile](https://github.com/nfifcondition)
+[Github Profile](https://github.com/IfItsChris)
 
 [Github Repo](https://github.com/https://github.com/PublicVoidEnable/AIO-Bot)
