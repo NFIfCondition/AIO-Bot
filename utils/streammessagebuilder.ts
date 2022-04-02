@@ -6,6 +6,7 @@ import{
 import { MessageEmbed } from 'discord.js'
 
 
+
 export function streamMessageBuilder(streamer: string, channel: string, bot: CustomDiscordClient){
     getStreamers.getStreamer(streamer).then((response: any) =>{
         console.log(response.data.data)
@@ -15,7 +16,6 @@ export function streamMessageBuilder(streamer: string, channel: string, bot: Cus
                     .setTitle(response.data.data[0].title)
                     .setURL('https://twitch.tv/' + streamer)
                     .setAuthor({ name:streamer + ' is Live', iconURL:responseid.data.data[0].profile_image_url, url:'https://alicia.ionic-host.de'})
-                    .setThumbnail()
                     .addFields(
                         { name: 'Playing ' + response.data.data[0].game_name, value: 'https://twitch.tv/' + streamer},
                     )
