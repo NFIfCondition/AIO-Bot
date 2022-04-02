@@ -42,7 +42,8 @@ TypeScript Bot by IfCondition | Benjamin Nierlich Webinterface by IfItsChris | C
 
 Email Address: info@ionic-host.de
 
-[IfCondition](https://github.com/nfifcondition)<br>
-[IfItsChris](https://github.com/IfItsChris)
+[IfCondition GitHub](https://github.com/nfifcondition)<br>
+[IfItsChrisGitHub](https://github.com/IfItsChris)<br>
+[Website](https://aio.ionic.host.de)
 
 [Github Repo](https://github.com/https://github.com/PublicVoidEnable/AIO-Bot)
