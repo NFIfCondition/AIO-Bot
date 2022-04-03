@@ -1,4 +1,5 @@
-const { SlashCommandBuilder } = require('@discordjs/builders');
+import { SlashCommandBuilder } from "@discordjs/builders";
+
 export = {
     data: new SlashCommandBuilder()
         .setName('ticketsupport')
