@@ -1,34 +1,33 @@
-import { SlashCommandSubcommandsOnlyBuilder } from "@discordjs/builders";
-import { SlashCommandBuilder } from "@discordjs/builders";
-
-export const TICKETSUPPORT_COMMAND : SlashCommandSubcommandsOnlyBuilder = 
-new SlashCommandBuilder()
+const { SlashCommandBuilder } = require('@discordjs/builders');
+export = {
+    data: new SlashCommandBuilder()
         .setName('ticketsupport')
         .setDescription('Ticket Support')
-        .addSubcommand(subcommand =>
+        .addSubcommand((subcommand:any) =>
             subcommand
                 .setName('create')
                 .setDescription('Erstellt ein Ticket')
-                .addStringOption(option => option.setName('anliegen').setDescription('Das Anliegen für dein Ticket')))
-        .addSubcommand(subcommand =>
+                .addStringOption((option: any) => option.setName('anliegen').setDescription('Das Anliegen für dein Ticket')))
+        .addSubcommand((subcommand:any) =>
             subcommand
                 .setName('add')
                 .setDescription('Fügt einen User zu diesem Ticket hinzu')
-                .addUserOption(option => option.setName('user').setDescription('Der User')))
-        .addSubcommand(subcommand =>
+                .addUserOption((option: any) => option.setName('user').setDescription('Der User')))
+        .addSubcommand((subcommand:any) =>
             subcommand
                 .setName('remove')
                 .setDescription('Entfernt einen User von diesem Ticket')
-                .addUserOption(option => option.setName('user').setDescription('Der User')))
-        .addSubcommand(subcommand =>
+                .addUserOption((option: any) => option.setName('user').setDescription('Der User')))
+        .addSubcommand((subcommand:any) =>
             subcommand
                 .setName('close')
                 .setDescription('Schließt das Ticket'))
-        .addSubcommand(subcommand =>
+        .addSubcommand((subcommand:any) =>
             subcommand
                 .setName('archive')
                 .setDescription('Archiviert das Ticket'))
-        .addSubcommand(subcommand =>
+        .addSubcommand((subcommand:any) =>
             subcommand
                 .setName('delete')
                 .setDescription('Löscht das Ticket'))
+};
