@@ -2,6 +2,8 @@ import{
 	tokensFromEnvFile
 } from './index'
 
+import {Server} from 'ws'
+
 import { CustomDiscordClient } from './CustomDiscordClient';
 import { REST } from "@discordjs/rest"
 import { Routes } from 'discord-api-types/v9'
@@ -23,6 +25,7 @@ function startBotRoutine(){
 
 	console.info('Starting Bot with ENV file ', process.argv[2])
 
+	const wss = new Server({ port: 8080 });
 	const tokens = tokensFromEnvFile(process.argv[2])
 	const bot = new CustomDiscordClient({ intents: 32767 });
 
@@ -37,7 +40,7 @@ function startBotRoutine(){
 	messageListener(bot)
 	join(bot)
 	interaction(bot)
-	websocket(bot)
+	websocket(wss, bot)
 
 	bot.on('ready', () =>{
 		if (bot.user){
