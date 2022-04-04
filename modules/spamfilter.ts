@@ -7,7 +7,7 @@ import {
     api
 } from './../index'
 
-export function spamfilter(bot: CustomDiscordClient, botgeneral: any){
+export function spamfilter(bot: CustomDiscordClient){
     bot.on('messageCreate', async message =>{
         const guild = message.guildId
         const messageContent = message.content.split(" ")
