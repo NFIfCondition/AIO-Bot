@@ -1,5 +1,7 @@
 import { CustomDiscordClient } from './CustomDiscordClient';
+import { Client } from 'discord.js';
 const bot = new CustomDiscordClient({ intents: 32767 });
+const botgener = new Client ({ intents: 32767 });
 
 import {dcclientid, token} from './utils/tokens'
 const dcclient: string = dcclientid()
@@ -24,8 +26,10 @@ import { interaction } from './modules/listener/interaction';
 import {websocket} from './modules/listener/websocket';
 import {join} from './modules/listener/guildmemberjoin';
 import {messageListener} from './modules/listener/messagecreate'
+import { spamfilter } from './modules/spamfilter';'./modules/spamfilter'
 import './modules/ticketsupport'
 import './utils/replaceVars.js'
+spamfilter(bot, botgener)
 messageListener(bot)
 join(bot)
 interaction(bot)

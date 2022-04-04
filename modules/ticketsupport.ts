@@ -57,7 +57,6 @@ export const ticketsupport: TicketSupportInterface = {
                 }
         },
         close : async function(bot: CustomDiscordClient, channelid: string, userid: string){
-                //replace guildid to bot.guilds.cache.get(id)
                 const channel = await bot.fetchChannel(channelid)
                 const memberarray = userid.split(",")
                 for (const key of memberarray){

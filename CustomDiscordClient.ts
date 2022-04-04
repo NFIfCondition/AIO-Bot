@@ -1,4 +1,4 @@
-import Discord, { GuildChannel, Snowflake, TextChannel } from 'discord.js'
+import Discord, { GuildChannel, Snowflake, TextChannel, MessageManager, ChannelManager, Message, MessageResolvable } from 'discord.js'
 
 export class CustomDiscordClient extends Discord.Client{
     async fetchChannel(id: Snowflake): Promise<GuildChannel | undefined> {
