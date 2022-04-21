@@ -1,3 +1,5 @@
+import { SlashCommandUserOption } from "@discordjs/builders";
+import { SlashCommandStringOption } from "@discordjs/builders";
 import { SlashCommandBuilder, SlashCommandSubcommandBuilder } from "@discordjs/builders";
 
 export = {
@@ -8,17 +10,17 @@ export = {
             subcommand
                 .setName('create')
                 .setDescription('Erstellt ein Ticket')
-                .addStringOption((option: any) => option.setName('anliegen').setDescription('Das Anliegen für dein Ticket')))
+                .addStringOption((option: SlashCommandStringOption) => option.setName('anliegen').setDescription('Das Anliegen für dein Ticket')))
         .addSubcommand((subcommand:SlashCommandSubcommandBuilder) =>
             subcommand
                 .setName('add')
                 .setDescription('Fügt einen User zu diesem Ticket hinzu')
-                .addUserOption((option: any) => option.setName('user').setDescription('Der User')))
+                .addUserOption((option: SlashCommandUserOption) => option.setName('user').setDescription('Der User')))
         .addSubcommand((subcommand:SlashCommandSubcommandBuilder) =>
             subcommand
                 .setName('remove')
                 .setDescription('Entfernt einen User von diesem Ticket')
-                .addUserOption((option: any) => option.setName('user').setDescription('Der User')))
+                .addUserOption((option: SlashCommandUserOption) => option.setName('user').setDescription('Der User')))
         .addSubcommand((subcommand:SlashCommandSubcommandBuilder) =>
             subcommand
                 .setName('close')

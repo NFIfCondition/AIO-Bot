@@ -1,23 +1,28 @@
-import{
-	tokensFromEnvFile
+import {
+	tokensFromEnvFile,
+	botjoin,
+	botleave
 } from './index'
 
-import { CustomDiscordClient } from './CustomDiscordClient';
+import { CustomDiscordClient } from './CustomDiscordClient'
 import { REST } from "@discordjs/rest"
 import { Routes } from 'discord-api-types/v9'
 
 import helpcommand from './commands/aiohelp'
-import clearchat from './commands/clearchat';
-import ticketsupport from './commands/ticketsupport';
+import clearchat from './commands/clearchat'
+import ticketsupport from './commands/ticketsupport'
 
 //MODULES&//
-import { interaction } from './modules/listener/interaction';
-import {websocket} from './modules/listener/websocket';
-import {join} from './modules/listener/guildmemberjoin';
-import {messageListener} from './modules/listener/messagecreate'
-import { spamfilter } from './modules/spamfilter'
+import { interaction } from './modules/listener/interaction'
+import { websocket } from './modules/listener/websocket'
+import { join } from './modules/listener/guildmemberjoin'
+import { messageListener } from './modules/listener/messagecreate'
+import { spamfilter } from './modules/listener/spamfilter'
 import './modules/ticketsupport'
 import './utils/replaceVars.js'
+
+//function loadAllData(){
+//}
 
 function startBotRoutine(){
 
@@ -26,6 +31,8 @@ function startBotRoutine(){
 	const tokens = tokensFromEnvFile(process.argv[2])
 	const bot = new CustomDiscordClient({ intents: 32767 });
 
+	console.log("Sever Count", bot.guilds.cache.size)
+
 	const command = [helpcommand, clearchat, ticketsupport]
 	const commands = []
 
@@ -33,6 +40,8 @@ function startBotRoutine(){
 		commands.push(key.data.toJSON())
 	}
 
+	botjoin(bot)
+	botleave(bot)
 	spamfilter(bot)
 	messageListener(bot)
 	join(bot)

@@ -10,5 +10,4 @@ export = {
                 .setRequired(true)
                 .setMaxValue(100)
                 .setMinValue(1))
-
 }

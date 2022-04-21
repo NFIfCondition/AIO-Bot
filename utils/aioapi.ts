@@ -7,6 +7,9 @@ export interface ApiRequest{
     getModules: (gid: string) => Promise<string>
 }
 
+//interface moduleObject{
+//}
+
 export const api: ApiRequest = {
     getModules: function(gid: string){
         https.globalAgent.options.rejectUnauthorized = false;

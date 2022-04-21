@@ -4,11 +4,13 @@
 
 ---
 
-<a href="https://img.shields.io/badge/JavaScipt-100%25-yellow"><img alt="TypeScript use" src="https://img.shields.io/badge/TypeScript-100%25-blue"></a> <a href="https://img.shields.io/badge/Used-Node.js-red"><img alt="Node.js use" src="https://img.shields.io/badge/Used-Node.js-red"></a> <a href="https://img.shields.io/badge/npm-discord.js-orange"><img alt="npm package discord.js" src="https://img.shields.io/badge/npm-discord.js-orange"></a>
+<a href="https://img.shields.io/badge/JavaScipt-100%25-yellow"><img alt="TypeScript use" src="https://img.shields.io/badge/TypeScript-100%25-blue"></a>
+<a href="https://img.shields.io/badge/Used-Node.js-red"><img alt="Node.js use" src="https://img.shields.io/badge/Used-Node.js-red"></a>
+<a href="https://img.shields.io/badge/npm-discord.js-orange"><img alt="npm package discord.js" src="https://img.shields.io/badge/npm-discord.js-orange"></a>
 
 ## Beschreibung
 
-Ein `Discord Bot` der alle Funktionen anderer bots in einen bringt und damit die Bot arme hinfällig macht
+Ein `Discord Bot` der alle Funktionen anderer Bots in einen bringt und damit die Bot arme hinfällig macht
 
 Dieser Code ist zur transparenz da und um freiwilige Verbesserungen einzureichen. Und nicht um diesen selber zu benutzen.
 
@@ -21,7 +23,7 @@ Dieser Bot ist eigentum von https://Ionic-Host.de https://aio.ionic-host.de
 - Frei Einsehbar
 - Verbesserungen frei einreichbar
 - Transparenz
-- Live Coded auf Stack-Stream
+- Teils Live Coded auf Stack-Stream
 
 ## Wo bekomme ich den Bot
 

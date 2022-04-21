@@ -5,13 +5,14 @@ import { CustomDiscordClient } from '../../CustomDiscordClient';
 const wss = new Server({ port: 8080 });
 
 export function websocket(bot: CustomDiscordClient){
+    console.log("offen")
     wss.on('connection', function connection(ws) {
         console.log("Interface connected! Action revicived!");
         ws.on('message', function message(data) {
             if (data.toString().startsWith('sendmessage')){
                 messagehandler(data.toString(), bot);
             }
-    });
+        });
     });
 
     async function messagehandler(msg: string, bot: CustomDiscordClient){

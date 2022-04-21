@@ -1,38 +1,37 @@
 import{
     CustomDiscordClient,
     ticketsupport,
-    ModuleNames,
+    //ModuleNames,
+    ModuleNamesToID,
     api,
     ModuleActive
 } from './../../index'
 import { MessageEmbed } from 'discord.js'
-import { ModuleNamesToID } from '../../utils/mids';
 
 export function interaction(bot: CustomDiscordClient) {
         bot.on('interactionCreate', async (interaction) => {
             if (!interaction.isCommand()) return;
-            if (interaction.commandName === 'alicia-help') {
+            if (interaction.commandName === 'aio-help') {
               const helpembed = new MessageEmbed()
                       .setColor('#0099ff')
-                      .setTitle('Alicia-Bot')
-                      .setURL('https://alicia.ionic-host.de')
-                      .setAuthor({ name:'Alicia-Bot', iconURL:'https://ionic-host.de/assets/img/ionic.png', url:'https://alicia.ionic-host.de'})
+                      .setTitle('AIO-Bot')
+                      .setURL('https://aio.ionic-host.de')
+                      .setAuthor({ name:'AIO-Bot', iconURL:'https://ionic-host.de/assets/img/ionic.png', url:'https://aio.ionic-host.de'})
                       .setDescription('Hilfe Liste')
                       .setThumbnail('https://ionic-host.de/assets/img/ionic.png')
                       .addFields(
                           { name: 'Webinterface:', value: 'https://alicia.ionic-host.de' },
                           { name: '\u200B', value: '\u200B' },
-                          { name: 'alicia-warn', value: 'Warn User bei Eingestellten Warns erfolgt ein ban oder mute', inline: true },
-                          { name: 'alicia-ban', value: 'Bannt einen User vom Discord', inline: true },
-                          { name: 'alicia-mute', value: 'Mute einen User in Text Channels', inline: true },
-                          { name: 'alicia-timeout <Time>', value: 'Timeoute einen User dieser kann keinen Channel mehr joinen oder in diesen schreiben', inline: true },
-                          { name: 'alicia-invite <Time>', value: 'Erstelle einen Invite Link', inline: true },    
+                          { name: 'warn', value: 'Warn User bei Eingestellten Warns erfolgt ein ban oder mute', inline: true },
+                          { name: 'ban', value: 'Bannt einen User vom Discord', inline: true },
+                          { name: 'mute', value: 'Mute einen User in Text Channels', inline: true },
+                          { name: 'timeout <Time>', value: 'Timeoute einen User dieser kann keinen Channel mehr joinen oder in diesen schreiben', inline: true },
+                          { name: 'invite <Time>', value: 'Erstelle einen Invite Link', inline: true },
                           { name: 'clearchat', value: 'Löscht alle Nachrichten in einem Channel (nur bei nachrichten bis 14Tagen möglich)', inline: true },
-                          { name: 'alicia-kick', value: 'Kickt den User vom Discord', inline: true },    
+                          { name: 'kick', value: 'Kickt den User vom Discord', inline: true },
                       )
-                      .setImage('https://ionic-host.de/assets/img/ionic.png')
                       .setTimestamp()
-                      .setFooter({text:'Alicia-Bot by Ionic-Host.de', iconURL:'https://ionic-host.de/assets/img/ionic.png'});
+                      .setFooter({text:'AIO-Bot by Ionic-Host.de', iconURL:'https://ionic-host.de/assets/img/ionic.png'});
                   await interaction.reply({embeds: [helpembed]})
             } else if (interaction.commandName === 'clearchat'){
                 if (interaction.guildId){
@@ -53,15 +52,15 @@ export function interaction(bot: CustomDiscordClient) {
                                   if(member){
                                     const cleared = new MessageEmbed()  
                                       .setColor('#0099ff')
-                                      .setTitle('Alicia-Bot')
-                                      .setURL('https://alicia.ionic-host.de')
-                                      .setAuthor({ name:'Alicia-Bot', iconURL:'https://ionic-host.de/assets/img/ionic.png', url:'https://alicia.ionic-host.de'})
+                                      .setTitle('AIO-Bot')
+                                      .setURL('https://aio.ionic-host.de')
+                                      .setAuthor({ name:'AIO-Bot', iconURL:'https://ionic-host.de/assets/img/ionic.png', url:'https://aio.ionic-host.de'})
                                       .setThumbnail('https://ionic-host.de/assets/img/ionic.png')
                                       .addFields(
                                           { name: 'Channel wurde Bereinigt von:', value:  member.user.username} 
                                       )
                                       .setTimestamp()
-                                      .setFooter({text:'Alicia-Bot by Ionic-Host.de', iconURL:'https://ionic-host.de/assets/img/ionic.png'});
+                                      .setFooter({text:'AIO-Bot by Ionic-Host.de', iconURL:'https://ionic-host.de/assets/img/ionic.png'});
                           
                                   interaction.reply({embeds: [cleared]})
                                 }
