@@ -1,4 +1,4 @@
-![command-line-pic](https://aio.ionic-host.de/assets/img/code.png)
+![botcode](https://aio.ionic-host.de/assets/img/code.png)
 
 # AIO Discord Bot
 
