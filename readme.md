@@ -49,3 +49,5 @@ Email Address: info@ionic-host.de
 [Website](https://aio.ionic.host.de)
 
 [Github Repo](https://github.com/https://github.com/PublicVoidEnable/AIO-Bot)
+
+Letzte Änderungen 24.04.2022
