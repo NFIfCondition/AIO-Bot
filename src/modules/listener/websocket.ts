@@ -2,9 +2,7 @@ import {Server} from 'ws'
 import { MessageEmbed } from 'discord.js';
 import { CustomDiscordClient } from '../../CustomDiscordClient';
 
-const wss = new Server({ port: 8080 });
-
-export function websocket(bot: CustomDiscordClient){
+export function websocket(bot: CustomDiscordClient, wss: Server){
     console.log("offen")
     wss.on('connection', function connection(ws) {
         console.log("Interface connected! Action revicived!");
