@@ -7,6 +7,7 @@ import {
 import { CustomDiscordClient } from './CustomDiscordClient'
 import { REST } from "@discordjs/rest"
 import { Routes } from 'discord-api-types/v9'
+import { Server } from 'ws'
 
 import helpcommand from './commands/aiohelp'
 import clearchat from './commands/clearchat'
@@ -46,7 +47,7 @@ function startBotRoutine(){
 	messageListener(bot)
 	join(bot)
 	interaction(bot)
-	websocket(bot)
+	websocket(bot, new Server({ port: 8080 }))
 
 	bot.on('ready', () =>{
 		if (bot.user){

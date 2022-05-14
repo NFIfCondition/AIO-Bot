@@ -29,6 +29,8 @@ function checkMSG(msg: string, blocked: string[]): string[] | undefined {
 function checkMSGWithAIOSpam(msg: string, blocked: string[], whitelisted: string[]): string[] | undefined{
     const words = blocked
     const whitelistedwords = blocked
+    // TODO: Return real logic, added return undefined to avoid build issues
+    return undefined 
 
 }
 
@@ -45,7 +47,8 @@ export function spamfilter(bot: CustomDiscordClient){
                     const badwords = words.length >= 1 ? words : words.split(" ")
                     for (const key in badwords){
                         if (message.content.toLowerCase().includes(badwords[key])){
-                            const user = await bot.getCachedUser(message.author.id)
+                            // TODO:  bot.getCachedUser is not defined, please check if something like a commit for this is missing
+                            //const user = await bot.getCachedUser(message.author.id)
                             const channelObj = await bot.getChannelFromCache(message.channelId)
                             const msg = await message.delete()
                             const spam = new MessageEmbed()
