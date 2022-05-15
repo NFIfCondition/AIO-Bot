@@ -15,7 +15,7 @@ export function streamMessageBuilder(streamer: string, channel: string, bot: Cus
                     .setColor('#0099ff')
                     .setTitle(response.data.data[0].title)
                     .setURL('https://twitch.tv/' + streamer)
-                    .setAuthor({ name:streamer + ' is Live', iconURL:responseid.data.data[0].profile_image_url, url:'https://alicia.ionic-host.de'})
+                    .setAuthor({ name:streamer + ' is Live', iconURL:responseid.data.data[0].profile_image_url, url:'https://aio.ionic-host.de'})
                     .addFields(
                         { name: 'Playing ' + response.data.data[0].game_name, value: 'https://twitch.tv/' + streamer},
                     )

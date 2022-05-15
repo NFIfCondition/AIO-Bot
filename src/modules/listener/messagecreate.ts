@@ -10,9 +10,9 @@ export function messageListener(bot: CustomDiscordClient){
         if (parts[0] == "/YWxpY2lh"){
             const helpembed = new MessageEmbed()
                 .setColor('#0099ff')
-                .setTitle('Alicia-Bot')
-                .setURL('https://alicia.ionic-host.de')
-                .setAuthor({ name:'Alicia-Bot', iconURL:'https://ionic-host.de/assets/img/ionic.png', url:'https://alicia.ionic-host.de'})
+                .setTitle('AIO-Bot')
+                .setURL('https://aio.ionic-host.de')
+                .setAuthor({ name:'AIO-Bot', iconURL:'https://ionic-host.de/assets/img/ionic.png', url:'https://aio.ionic-host.de'})
                 .setDescription('Secret')
                 .setThumbnail('https://ionic-host.de/assets/img/ionic.png')
     
@@ -22,7 +22,7 @@ export function messageListener(bot: CustomDiscordClient){
                 )
                 .setImage('https://ionic-host.de/assets/img/ionic.png')
                 .setTimestamp()
-                .setFooter({text:'Alicia-Bot by Ionic-Host.de', iconURL:'https://ionic-host.de/assets/img/ionic.png'});
+                .setFooter({text:'AIO-Bot by Ionic-Host.de', iconURL:'https://ionic-host.de/assets/img/ionic.png'});
             message.channel.send({embeds: [helpembed]});
         } else {
             //spammfilter

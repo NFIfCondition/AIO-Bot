@@ -22,7 +22,7 @@ export function join(bot: CustomDiscordClient){
                     const message = new MessageEmbed()
                         .setColor('#0099ff')
                         .setTitle(title)
-                        .setAuthor({ name:'Alicia-Bot', iconURL:'https://ionic-host.de/assets/img/ionic.png', url:'https://alicia.ionic-host.de'})
+                        .setAuthor({ name:'AIO-Bot', iconURL:'https://ionic-host.de/assets/img/ionic.png', url:'https://aio.ionic-host.de'})
                         .setDescription(subtitle)
                         .setThumbnail('https://ionic-host.de/assets/img/ionic.png')
             
@@ -30,7 +30,7 @@ export function join(bot: CustomDiscordClient){
                             { name: '', value: msg}, 
                         )
                         .setTimestamp()
-                        .setFooter({text:'Alicia-Bot by Ionic-Host.de', iconURL:'https://ionic-host.de/assets/img/ionic.png'});
+                        .setFooter({text:'AIO-Bot by Ionic-Host.de', iconURL:'https://ionic-host.de/assets/img/ionic.png'});
                         
                     const channel = await bot.getChannelFromCache(response.data[0].channel)
                         

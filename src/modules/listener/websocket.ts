@@ -27,12 +27,12 @@ export function websocket(bot: CustomDiscordClient, wss: Server){
             const helpembed = new MessageEmbed()
                     .setColor('#0099ff')
                     .setThumbnail('https://ionic-host.de/assets/img/ionic.png')
-                    .setAuthor({ name:'Alicia-Bot', iconURL:'https://ionic-host.de/assets/img/ionic.png', url:'https://alicia.ionic-host.de'})
+                    .setAuthor({ name:'AIO-Bot', iconURL:'https://ionic-host.de/assets/img/ionic.png', url:'https://aio.ionic-host.de'})
                     .addFields(
                         {name: title , value: message }  
                     )
                     .setTimestamp()
-                    .setFooter({text:'Alicia-Bot by Ionic-Host.de'});
+                    .setFooter({text:'AIO-Bot by Ionic-Host.de'});
                 const botobjc = await bot.getChannelFromCache(channelid)
 
                 if (botobjc){
@@ -50,12 +50,12 @@ export function websocket(bot: CustomDiscordClient, wss: Server){
             const helpembed = new MessageEmbed()
                     .setColor('#0099ff')
                     .setThumbnail('https://ionic-host.de/assets/img/ionic.png')
-                    .setAuthor({ name:'Alicia-Bot', iconURL:'https://ionic-host.de/assets/img/ionic.png', url:'https://alicia.ionic-host.de'})
+                    .setAuthor({ name:'AIO-Bot', iconURL:'https://ionic-host.de/assets/img/ionic.png', url:'https://aio.ionic-host.de'})
                     .addFields(
                         {name: title , value: message }  
                     )
                     .setTimestamp()
-                    .setFooter({text:'Alicia-Bot by Ionic-Host.de'});
+                    .setFooter({text:'AIO-Bot by Ionic-Host.de'});
 
                     const botobjc = await bot.getChannelFromCache(channelid)
 
