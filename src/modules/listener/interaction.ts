@@ -20,7 +20,7 @@ export function interaction(bot: CustomDiscordClient) {
                       .setDescription('Hilfe Liste')
                       .setThumbnail('https://ionic-host.de/assets/img/ionic.png')
                       .addFields(
-                          { name: 'Webinterface:', value: 'https://alicia.ionic-host.de' },
+                          { name: 'Webinterface:', value: 'https://aio.ionic-host.de' },
                           { name: '\u200B', value: '\u200B' },
                           { name: 'warn', value: 'Warn User bei Eingestellten Warns erfolgt ein ban oder mute', inline: true },
                           { name: 'ban', value: 'Bannt einen User vom Discord', inline: true },
