@@ -14,7 +14,7 @@ Ein `Discord Bot` der alle Funktionen anderer Bots in einen bringt und damit die
 
 Dieser Code ist zur transparenz da und um freiwilige Verbesserungen einzureichen. Und nicht um diesen selber zu benutzen.
 
-Dieser Bot ist eigentum von https://Ionic-Host.de https://aio.ionic-host.de 
+Dieser Bot ist Eigentum von https://Ionic-Host.de https://aio.ionic-host.de 
 
 ## Erklärung
 
@@ -48,6 +48,6 @@ Email Address: info@ionic-host.de
 [IfItsChris GitHub](https://github.com/IfItsChris)<br>
 [Website](https://aio.ionic.host.de)
 
-[Github Repo](https://github.com/https://github.com/PublicVoidEnable/AIO-Bot)
+[Github Repo](https://github.com/https://github.com/nfifcondition/AIO-Bot)
 
-Letzte Änderungen 24.04.2022
+Letzte Änderungen 17.05.2022

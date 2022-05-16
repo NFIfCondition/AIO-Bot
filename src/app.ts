@@ -10,8 +10,15 @@ import { Routes } from 'discord-api-types/v9'
 import { Server } from 'ws'
 
 import helpcommand from './commands/aiohelp'
+import bancommand from './commands/ban'
 import clearchat from './commands/clearchat'
+import giveawaycommand from './commands/giveaway'
+import invitecommand from './commands/invite'
+import kickcommand from './commands/kick'
+import mutecommand from './commands/mute'
 import ticketsupport from './commands/ticketsupport'
+import timeoutcommand from './commands/timeout'
+import warncommand from './commands/warn'
 
 //MODULES&//
 import { interaction } from './modules/listener/interaction'
@@ -34,7 +41,7 @@ function startBotRoutine(){
 
 	console.log("Sever Count", bot.guilds.cache.size)
 
-	const command = [helpcommand, clearchat, ticketsupport]
+	const command = [helpcommand, bancommand, clearchat,giveawaycommand, invitecommand, kickcommand, mutecommand, ticketsupport, timeoutcommand, warncommand]
 	const commands = []
 
 	for (const key of command){
