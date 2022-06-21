@@ -48,6 +48,6 @@ Email Address: info@ionic-host.de
 [IfItsChris GitHub](https://github.com/IfItsChris)<br>
 [Website](https://aio.ionic.host.de)
 
-[Github Repo](https://github.com/https://github.com/nfifcondition/AIO-Bot)
+[Github Repo](https://github.com/nfifcondition/AIO-Bot)
 
 Letzte Änderungen 17.05.2022

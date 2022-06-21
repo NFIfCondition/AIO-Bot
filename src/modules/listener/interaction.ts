@@ -35,8 +35,7 @@ export function interaction(bot: CustomDiscordClient) {
                   await interaction.reply({embeds: [helpembed]})
             } else if (interaction.commandName === 'clearchat'){
                 if (interaction.guildId){
-                    api.getModules(interaction.guildId).then((response: any) =>{
-                        if (ModuleActive(response.data, ModuleNamesToID.Chatclear)){
+                        if (ModuleActive(interaction.guildId, ModuleNamesToID.Chatclear)){
                             api.getModule(interaction.guildId as string, "chatclear").then(async (responseroles: any) =>{
                                 const roles = responseroles.data[0].roleid
                                 if (roles.includes(roles)){
@@ -67,7 +66,6 @@ export function interaction(bot: CustomDiscordClient) {
                               }
                             })
                         }
-                    })
                 }
             } else if (interaction.commandName === 'ticketsupport'){
                 if (interaction.options.getSubcommand() === 'create'){

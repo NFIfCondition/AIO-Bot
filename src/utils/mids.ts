@@ -8,6 +8,7 @@ export enum ModuleNamesToID{
     Joinmessage = 7,
     Aiospamfilter = 8,
     Streamer = 9,
+    Aioclientfilter = 10
 }
 
 export enum ModuleNames{
@@ -20,13 +21,6 @@ export enum ModuleNames{
     Joinmessage = "joinmessage",
     Aiospamfilter = "aiospamfilter",
     Streamer = "streamer",
+    Aioclientfilter = "aioclientfilter"
 }
 
-export function ModuleActive(response: any, module: number){
-    for (const key in response){
-        if (response[key].mid == module){
-            return true;
-        }
-    }
-    return false;
-}

@@ -47,8 +47,6 @@ export function spamfilter(bot: CustomDiscordClient){
                     const badwords = words.length >= 1 ? words : words.split(" ")
                     for (const key in badwords){
                         if (message.content.toLowerCase().includes(badwords[key])){
-                            // TODO:  bot.getCachedUser is not defined, please check if something like a commit for this is missing
-                            //const user = await bot.getCachedUser(message.author.id)
                             const channelObj = await bot.getChannelFromCache(message.channelId)
                             const msg = await message.delete()
                             const spam = new MessageEmbed()
