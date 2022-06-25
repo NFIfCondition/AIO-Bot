@@ -5,8 +5,6 @@ import{
 
 import { MessageEmbed } from 'discord.js'
 
-
-
 export function streamMessageBuilder(streamer: string, channel: string, bot: CustomDiscordClient){
     getStreamers.getStreamer(streamer).then((response: any) =>{
         console.log(response.data.data)

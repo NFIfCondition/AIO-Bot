@@ -1,11 +1,13 @@
 import {
     CustomDiscordClient,
     containsRolesInClearChat,
-    containsClientInClearChat
+    containsClientInClearChat,
+    invitemessage,
+    chatclearmessage,
+    banmessage
 } from './../../index'
-import {GuildInvitableChannelResolvable, GuildMember, Interaction, MessageEmbed} from 'discord.js'
-import {invitemessage} from "../../messagebuilders/invitemessagebuilder";
-import {chatclearmessage} from "../../messagebuilders/clearchartmessagebuilder";
+import {GuildInvitableChannelResolvable, GuildMember, Interaction, MessageEmbed, Permissions} from 'discord.js'
+import {APIInteractionGuildMember} from "discord-api-types/v10";
 
 export function interaction(bot: CustomDiscordClient) {
         bot.on('interactionCreate', async (interaction:Interaction) => {
@@ -103,9 +105,8 @@ export function interaction(bot: CustomDiscordClient) {
                     if (params.name == "time"){
                         const time: number = interaction.options.data[0].value as number
                         if (time){
-                            console.log(time*60)
                             const invite = await interaction.guild.invites.create(interaction.channel as GuildInvitableChannelResolvable,{maxAge:(time*60), unique:true});
-                            const member = interaction.member
+                            const member = interaction.member as GuildMember | APIInteractionGuildMember
                             if (member){
                                 invitemessage(member, interaction, invite.code)
                             }
@@ -114,12 +115,36 @@ export function interaction(bot: CustomDiscordClient) {
                     if (params.name == "maxusers"){
                         const users: number = interaction.options.data[0].value as number
                         const invite = await interaction.guild.invites.create(interaction.channel as GuildInvitableChannelResolvable,{maxUses: users, maxAge:0});
-                        const member = interaction.member
+                        const member = interaction.member as GuildMember | APIInteractionGuildMember
                         if (member){
                             invitemessage(member, interaction, invite.code)
                         }
                     }
 
+                }
+            } else if (interaction.commandName === "ban"){
+                if (interaction.memberPermissions){
+                    const perms = interaction.memberPermissions.has(Permissions.FLAGS.BAN_MEMBERS)
+                    if (perms && interaction.options.data[0].user && interaction.guild) {
+                        const member = interaction.member as GuildMember | APIInteractionGuildMember
+                        const user = interaction.options.data[0].user.id
+                        const userobj = await interaction.guild.members.fetch(user)
+                        let time = undefined
+                        let reason = undefined
+
+                        for (let i = 0; i < interaction.options.data.length; i++){
+                            if (interaction.options.data[i].name == "time"){
+                                time = interaction.options.data[i].value + " Tage"
+
+                            }
+                            if (interaction.options.data[i].name == "reason"){
+                                reason = interaction.options.data[i].value
+
+                            }
+                        }
+                        //userobj.ban({days: time as number | undefined, reason: reason as string | undefined})
+                        banmessage(member, interaction, userobj, time as number | undefined | string, reason as string | undefined)
+                    }
                 }
             }
         });

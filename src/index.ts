@@ -16,3 +16,9 @@ export * from './api/modules'
 export * from './api/spamfilter'
 export * from './api/streamer'
 export * from './api/webseitstats'
+
+//MessageBuilder
+export * from './messagebuilders/invitemessagebuilder'
+export * from './messagebuilders/clearchartmessagebuilder'
+export * from './messagebuilders/banmessagebuilder'
+export * from './messagebuilders/streammessagebuilder'
