@@ -1,7 +1,7 @@
 import{
     CustomDiscordClient,
     getStreamers,
-} from './../index'
+} from '../index'
 
 import { MessageEmbed } from 'discord.js'
 

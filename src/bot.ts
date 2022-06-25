@@ -1,7 +1,6 @@
 import {
 	tokensFromEnvFile,
 	botjoin,
-	botleave
 } from './index'
 
 import { CustomDiscordClient } from './CustomDiscordClient'
@@ -25,7 +24,7 @@ import { interaction } from './modules/listener/interaction'
 import { websocket } from './modules/listener/websocket'
 import { join } from './modules/listener/guildmemberjoin'
 import { messageListener } from './modules/listener/messagecreate'
-import { spamfilter } from './modules/listener/spamfilter'
+//import { spamfilter } from './modules/listener/spamfilter'
 import './modules/ticketsupport'
 import './utils/replaceVars.js'
 
@@ -49,8 +48,7 @@ function startBotRoutine(){
 	}
 
 	botjoin(bot)
-	botleave(bot)
-	spamfilter(bot)
+	//spamfilter(bot)
 	messageListener(bot)
 	join(bot)
 	interaction(bot)

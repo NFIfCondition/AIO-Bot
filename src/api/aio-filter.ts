@@ -2,12 +2,12 @@ import https from 'https';
 import axios from 'axios';
 import {CacheType, CacheTypeReducer, Snowflake} from "discord.js";
 
-export interface ApiRequest{
+export interface AioFilter{
     getWords: () => Promise<string>,
     getClients: (gid: CacheTypeReducer<CacheType, Snowflake>, clientid: CacheTypeReducer<CacheType, Snowflake>)=> Promise<string>
 }
 
-export const api: ApiRequest= {
+export const aiofilter: AioFilter= {
     getWords: function() {
         https.globalAgent.options.rejectUnauthorized = false;
         const url = `https://api.ionic-host.de/aiospamfilter/request/words`
@@ -20,8 +20,8 @@ export const api: ApiRequest= {
     }
 }
 
-export function containsClient(gid: CacheTypeReducer<CacheType, Snowflake>, clientid: CacheTypeReducer<CacheType, Snowflake>): string[] | number{
-    api.getClients(gid, clientid).then(async(response: any) => {
+export function containsClientInAIOFilter(gid: CacheTypeReducer<CacheType, Snowflake>, clientid: CacheTypeReducer<CacheType, Snowflake>): string[] | number{
+    aiofilter.getClients(gid, clientid).then(async(response: any) => {
             for (const key in response.data) {
                 if (response.data[key].clientag == clientid) {
                     return true;
@@ -34,7 +34,7 @@ export function containsClient(gid: CacheTypeReducer<CacheType, Snowflake>, clie
 }
 
 export function containsWord(word: string): boolean{
-    api.getWords().then(async(response: any) => {
+    aiofilter.getWords().then(async(response: any) => {
             for (const key in response.data) {
                 if (response.data[key].words == word) {
                     return true;

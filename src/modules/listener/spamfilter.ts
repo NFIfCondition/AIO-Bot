@@ -1,4 +1,4 @@
-import { MessageEmbed } from 'discord.js'
+/*import { MessageEmbed } from 'discord.js'
 import {
     ModuleNamesToID,
     ModuleActive,
@@ -71,4 +71,4 @@ export function spamfilter(bot: CustomDiscordClient){
             }
         })
     })
-}
+}*/
