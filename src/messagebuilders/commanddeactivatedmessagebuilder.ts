@@ -1,10 +1,7 @@
-import {CommandInteraction, GuildMember, MessageEmbed} from 'discord.js'
-import {APIInteractionGuildMember} from "discord-api-types/v10";
+import {CommandInteraction, MessageEmbed} from 'discord.js'
 
-
-export function invitemessage(member: GuildMember | APIInteractionGuildMember, interaction: CommandInteraction, invitecode: string){
-    if (member) {
-        const invite = new MessageEmbed()
+export function commanddeactivatedmessagebuilder(interaction: CommandInteraction, command: string){
+        const cleared = new MessageEmbed()
             .setColor('#0099ff')
             .setTitle('AIO-Bot')
             .setURL('https://aio.ionic-host.de')
@@ -15,8 +12,8 @@ export function invitemessage(member: GuildMember | APIInteractionGuildMember, i
             })
             .setThumbnail('https://ionic-host.de/assets/img/ionic.png')
             .addFields(
-                {name: 'https://discord.gg/'+invitecode, value: "\u200b"},
-                {name: 'Angefordert von ', value: member.user.username}
+                {name: 'Der Command ' + command + 'ist deaktiviert', value: '\u200b'},
+                {name: 'Du kannst ihn im Dashboard Aktivieren', value:'\u200b'}
             )
             .setTimestamp()
             .setFooter({
@@ -24,6 +21,5 @@ export function invitemessage(member: GuildMember | APIInteractionGuildMember, i
                 iconURL: 'https://ionic-host.de/assets/img/ionic.png'
             });
 
-        interaction.reply({embeds: [invite]})
-    }
+        interaction.reply({embeds: [cleared]})
 }
