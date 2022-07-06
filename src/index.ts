@@ -7,6 +7,7 @@ export * from './utils/getstreamer'
 export * from './utils/replaceVars'
 export * from './utils/aiotoken'
 export * from './modules/listener/bot'
+export * from './bot'
 
 // API
 export * from './api/aio-filter'

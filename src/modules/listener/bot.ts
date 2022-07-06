@@ -1,12 +1,14 @@
 import {
     CustomDiscordClient,
-    websitestats
+    websitestats,
+    slashCommands, tokensFromEnvFile
 } from './../../index'
 
-
 export function botjoin(bot: CustomDiscordClient){
-    bot.on('guildCreate', guild =>{
+    const tokens = tokensFromEnvFile(process.argv[2])
+    bot.on('guildCreate', () =>{
         websitestats.setWebstats(bot.guilds.cache.size)
         console.log("Server Count", bot.guilds.cache.size)
+        slashCommands(tokens);
     });
 }

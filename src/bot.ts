@@ -1,6 +1,7 @@
 import {
 	tokensFromEnvFile,
 	botjoin,
+	AioTokens,
 } from './index'
 
 import { CustomDiscordClient } from './CustomDiscordClient'
@@ -33,20 +34,12 @@ import './utils/replaceVars.js'
 //}
 
 function startBotRoutine(){
-
 	console.info('Starting Bot with ENV file ', process.argv[2])
 
 	const tokens = tokensFromEnvFile(process.argv[2])
-	const bot = new CustomDiscordClient({ intents: 32767 });
+	const bot = new CustomDiscordClient({ intents: 8 });
 
 	console.log("Sever Count", bot.guilds.cache.size)
-
-	const command = [helpcommand, bancommand, clearchat,giveawaycommand, invitecommand, kickcommand, mutecommand, ticketsupport, timeoutcommand, warncommand, unmute]
-	const commands = []
-
-	for (const key of command){
-		commands.push(key.data.toJSON())
-	}
 
 	botjoin(bot)
 	//spamfilter(bot)
@@ -66,25 +59,34 @@ function startBotRoutine(){
 			});
 		}
 	})
+	const dcToken = tokens.discordToken
+	slashCommands(tokens)
+	bot.login(dcToken).then(() => console.log("Bot Erfolgreich zum Discord Endpiont verbunden"))
+}
 
+export function slashCommands(tokens: AioTokens){
+	const command = [helpcommand, bancommand, clearchat,giveawaycommand, invitecommand, kickcommand, mutecommand, ticketsupport, timeoutcommand, warncommand, unmute]
+	const commands = []
+
+	for (const key of command){
+		commands.push(key.data.toJSON())
+	}
 	const id = tokens.discordClientId
-	const dctoken = tokens.discordToken
-	if (dctoken && id){
-		const rest = new REST({ version: '9' }).setToken(dctoken);
+	const dcToken = tokens.discordToken
+	if (dcToken && id){
+		const rest = new REST({ version: '9' }).setToken(dcToken);
 		(async () => {
 			try {
-					await rest.put(
-						Routes.applicationCommands(id),
-						{ body: commands},
-					);
-					console.log('Successfully reloaded application (/) commands.');
+				await rest.put(
+					Routes.applicationCommands(id),
+					{ body: commands},
+				);
+				console.log('Successfully reloaded application (/) commands.');
 			} catch (error) {
 				console.error(error);
 			}
 		})();
 	}
-
-	bot.login(dctoken)
 }
 
 startBotRoutine()

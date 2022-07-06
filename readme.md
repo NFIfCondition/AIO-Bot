@@ -38,7 +38,7 @@ Der Bot Ist komplett Kostenlos und frei für alle und aktuell noch in der Beta:
 
 ## Developer
 
-TypeScript Bot by IfCondition | Benjamin Nierlich Webinterface by IfItsChris | Christopher-Robin Brehm 
+TypeScript Bot by IfCondition | Benjamin Nierlich Webinterface by IfItsChris | Christopher-Robin Brehm and 54Byte | Tamara 
 
 ## Kontakt Informationen
 
