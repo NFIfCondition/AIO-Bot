@@ -2,11 +2,11 @@ import { SlashCommandBuilder } from "@discordjs/builders";
 
 export = {
     data: new SlashCommandBuilder()
-        .setName('kick')
-        .setDescription('Kickt einen User')
+        .setName('unmute')
+        .setDescription('Stummt einen User')
         .addUserOption(option =>
             option.setName('user')
-                .setDescription('Kickt den User von deinem Discord Server')
+                .setDescription('Stummt den User von deinem Discord Server')
                 .setRequired(true))
         .addStringOption(option =>
             option.setName('reason')

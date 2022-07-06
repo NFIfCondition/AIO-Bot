@@ -18,6 +18,7 @@ import mutecommand from './commands/mute'
 import ticketsupport from './commands/ticketsupport'
 import timeoutcommand from './commands/timeout'
 import warncommand from './commands/warn'
+import unmute from './commands/unmute'
 
 //MODULES&//
 import { interaction } from './modules/listener/interaction'
@@ -40,7 +41,7 @@ function startBotRoutine(){
 
 	console.log("Sever Count", bot.guilds.cache.size)
 
-	const command = [helpcommand, bancommand, clearchat,giveawaycommand, invitecommand, kickcommand, mutecommand, ticketsupport, timeoutcommand, warncommand]
+	const command = [helpcommand, bancommand, clearchat,giveawaycommand, invitecommand, kickcommand, mutecommand, ticketsupport, timeoutcommand, warncommand, unmute]
 	const commands = []
 
 	for (const key of command){

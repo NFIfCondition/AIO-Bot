@@ -11,15 +11,15 @@ export enum CommandToId{
 }
 
 export enum CommandName{
-    Ban = "ban",
-    Clearchat = "clearchat",
-    Giveaway = "giveaway",
-    Invite = "invite",
-    Kick = "kick",
-    Mute = "mute",
-    Ticketsupport = "ticketsupport",
-    Timeout = "timeout",
-    Warn = "warn",
+    Ban = "Ban",
+    Clearchat = "Clearchat",
+    Giveaway = "Giveaway",
+    Invite = "Invite",
+    Kick = "Kick",
+    Mute = "Mute",
+    Ticketsupport = "Ticketsupport",
+    Timeout = "Timeout",
+    Warn = "Warn",
 
 }
 

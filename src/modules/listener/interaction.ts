@@ -12,12 +12,16 @@ import {activeCommands} from "../../api/commands";
 import {CommandName, CommandToId} from "../../utils/commandids";
 import {commanddeactivatedmessagebuilder} from "../../messagebuilders/commanddeactivatedmessagebuilder";
 import {nopermmessagebuilder} from "../../messagebuilders/nopermmessagebuilder";
+import {kickmessage} from "../../messagebuilders/kickmessagebuilder";
+import {mutemessage} from "../../messagebuilders/mutemessagebuilder";
 
 export function interaction(bot: CustomDiscordClient) {
         bot.on('interactionCreate', async (interaction:Interaction) => {
             if (!interaction.isCommand()) return;
+            const channel = await bot.getChannelFromCache(interaction.channelId)
+            const member = interaction.member as GuildMember | APIInteractionGuildMember
             if (interaction.commandName === 'aio-help') {
-              const helpembed = new MessageEmbed()
+              const helpEmbed = new MessageEmbed()
                       .setColor('#0099ff')
                       .setTitle('AIO-Bot')
                       .setURL('https://aio.ionic-host.de')
@@ -37,7 +41,7 @@ export function interaction(bot: CustomDiscordClient) {
                       )
                       .setTimestamp()
                       .setFooter({text:'AIO-Bot by Ionic-Host.de', iconURL:'https://ionic-host.de/assets/img/ionic.png'});
-                  await interaction.reply({embeds: [helpembed]})
+                  await interaction.reply({embeds: [helpEmbed]})
             } else if (interaction.commandName === 'clearchat'){
                 if (interaction.guildId && bot.user) {
                     if (activeCommands(interaction.guildId, CommandToId.Clearchat)){
@@ -46,7 +50,6 @@ export function interaction(bot: CustomDiscordClient) {
                                 const _roles = interaction.member._roles
                                 if (_roles != null) {
                                     if (containsRolesInClearChat(interaction.guildId, _roles)) {
-                                        const channel = await bot.getChannelFromCache(interaction.channelId)
                                         const valueInter = interaction.options.data[0]
                                         if (channel && valueInter && valueInter.value && Number(valueInter.value)) {
                                             await channel.bulkDelete(valueInter.value as number, true) //_hoistedOptions[0].value
@@ -59,7 +62,6 @@ export function interaction(bot: CustomDiscordClient) {
                                 }
                                 const clients = await interaction.member.id
                                 if (containsClientInClearChat(interaction.guildId, clients)){
-                                    const channel = await bot.getChannelFromCache(interaction.channelId)
                                     const valueInter = interaction.options.data[0]
                                     if (channel && valueInter && valueInter.value && Number(valueInter.value)) {
                                         await channel.bulkDelete(valueInter.value as number, true) //_hoistedOptions[0].value
@@ -84,7 +86,7 @@ export function interaction(bot: CustomDiscordClient) {
                                             .setTimestamp()
                                             .setFooter({text:'AIO-Bot by Ionic-Host.de', iconURL:'https://ionic-host.de/assets/img/ionic.png'});
 
-                                        interaction.reply({embeds: [cleared]})
+                                        await interaction.reply({embeds: [cleared]})
                                     }
                                 }
                             }
@@ -97,6 +99,7 @@ export function interaction(bot: CustomDiscordClient) {
                     }
                 }
             } else if (interaction.commandName === 'ticketsupport'){
+                //TODO
                 if (activeCommands(interaction.guildId, CommandToId.Ticketsupport)){
                     if (interaction.options.getSubcommand() === 'create'){
                         //ticketsupport.create()
@@ -147,7 +150,6 @@ export function interaction(bot: CustomDiscordClient) {
                     }
                 }
             } else if (interaction.commandName === "ban"){
-
                 if (interaction.guild && interaction.channel) {
                     if (activeCommands(interaction.guildId, CommandToId.Ban)) {
                         if (interaction.memberPermissions){
@@ -182,8 +184,51 @@ export function interaction(bot: CustomDiscordClient) {
                         commanddeactivatedmessagebuilder(interaction, CommandName.Ban)
                     }
                 }
+            } else if (interaction.commandName === "kick"){
+                if (interaction.memberPermissions){
+                    const perms = interaction.memberPermissions.has(Permissions.FLAGS.KICK_MEMBERS)
+                    if (perms && interaction.options.data[0].user && interaction.guild) {
+                        const user = interaction.options.data[0].user.id
+                        const userobj = await interaction.guild.members.fetch(user)
+                        let reason = undefined
 
+                        if (interaction.options.data[1].name == "reason"){
+                            reason = interaction.options.data[1].value
+                        }
+                        kickmessage(member, interaction, userobj, reason as string | undefined)
+                        userobj.kick(reason as string | undefined)
+                    }
+                }
+            } else if (interaction.commandName === "mute"){
+                if (interaction.memberPermissions){
+                    const perms = interaction.memberPermissions.has(Permissions.FLAGS.MUTE_MEMBERS)
+                    if (perms && interaction.options.data[0].user && interaction.guild){
+                        const user = interaction.options.data[0].user.id
+                        const userobj = await interaction.guild.members.fetch(user)
+                        let reason = undefined
 
+                        if (interaction.options.data[1].name == "reason"){
+                            reason = interaction.options.data[1].value
+                        }
+                        mutemessage(member, interaction, userobj, reason as string | undefined)
+                        await userobj.voice.setMute(true, reason as string | undefined)
+                    }
+                }
+            } else if (interaction.commandName === "unmute"){
+                if (interaction.memberPermissions){
+                    const perms = interaction.memberPermissions.has(Permissions.FLAGS.MUTE_MEMBERS)
+                    if (perms && interaction.options.data[0].user && interaction.guild){
+                        const user = interaction.options.data[0].user.id
+                        const userobj = await interaction.guild.members.fetch(user)
+                        let reason = undefined
+
+                        if (interaction.options.data[1].name == "reason"){
+                            reason = interaction.options.data[1].value
+                        }
+                        mutemessage(member, interaction, userobj, reason as string | undefined)
+                        await userobj.voice.setMute(false, reason as string | undefined)
+                    }
+                }
             }
         });
 }

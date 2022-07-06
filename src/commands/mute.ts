@@ -8,4 +8,8 @@ export = {
             option.setName('user')
                 .setDescription('Stummt den User von deinem Discord Server')
                 .setRequired(true))
+        .addStringOption(option =>
+            option.setName('reason')
+                .setDescription('Grund des Kickes')
+                .setRequired(true))
 }

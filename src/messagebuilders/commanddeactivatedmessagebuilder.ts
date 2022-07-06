@@ -12,7 +12,7 @@ export function commanddeactivatedmessagebuilder(interaction: CommandInteraction
             })
             .setThumbnail('https://ionic-host.de/assets/img/ionic.png')
             .addFields(
-                {name: 'Der Command ' + command + 'ist deaktiviert', value: '\u200b'},
+                {name: 'Der Command ' + command + ' ist deaktiviert', value: '\u200b'},
                 {name: 'Du kannst ihn im Dashboard Aktivieren', value:'\u200b'}
             )
             .setTimestamp()
