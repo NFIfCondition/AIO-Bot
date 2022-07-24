@@ -3,25 +3,26 @@ import axios from 'axios';
 import {CacheType, CacheTypeReducer, Snowflake} from "discord.js";
 
 export interface SpamFilter{
-    getBlackListesWords: (gid: CacheTypeReducer<CacheType, Snowflake>)=> Promise<string>,
-    getAdminLogMessageforGuild: (gid: CacheTypeReducer<CacheType, Snowflake>)=> Promise<string>,
-    getPublicLogMessageforGuild: (gid: CacheTypeReducer<CacheType, Snowflake>)=> Promise<string>,
+    getBlackListedWords: (gid: CacheTypeReducer<CacheType, Snowflake>)=> Promise<string>,
+    getAdminLogMessageForGuild: (gid: CacheTypeReducer<CacheType, Snowflake>)=> Promise<string>,
+    getPublicLogMessageForGuild: (gid: CacheTypeReducer<CacheType, Snowflake>)=> Promise<string>,
     getWhitelistedWords: (gid: CacheTypeReducer<CacheType, Snowflake>)=> Promise<string>,
     getWhitelistedClients: (gid: CacheTypeReducer<CacheType, Snowflake>)=> Promise<string>,
+    getSpamrate: (gid: CacheTypeReducer<CacheType, Snowflake>)=> Promise<number> | undefined,
 }
 
 export const spamfilter: SpamFilter = {
-    getBlackListesWords: function(gid: CacheTypeReducer<CacheType, Snowflake>){
+    getBlackListedWords: function(gid: CacheTypeReducer<CacheType, Snowflake>){
         https.globalAgent.options.rejectUnauthorized = false;
         const url = `https://api.ionic-host.de/spamfilter/blacklistedwords/${gid}`
         return axios.get(url)
     },
-    getAdminLogMessageforGuild: function(gid: CacheTypeReducer<CacheType, Snowflake>){
+    getAdminLogMessageForGuild: function(gid: CacheTypeReducer<CacheType, Snowflake>){
         https.globalAgent.options.rejectUnauthorized = false;
         const url = `https://api.ionic-host.de/spamfilter/messagelog/${gid}`
         return axios.get(url)
     },
-    getPublicLogMessageforGuild: function(gid: CacheTypeReducer<CacheType, Snowflake>){
+    getPublicLogMessageForGuild: function(gid: CacheTypeReducer<CacheType, Snowflake>){
         https.globalAgent.options.rejectUnauthorized = false;
         const url = `https://api.ionic-host.de/spamfilter/messagepublic/${gid}`
         return axios.get(url)
@@ -36,12 +37,22 @@ export const spamfilter: SpamFilter = {
         const url = `https://api.ionic-host.de/spamfilter/whitelist/clients/${gid}`
         return axios.get(url)
     },
+    getSpamrate: function(gid: CacheTypeReducer<CacheType, Snowflake>){
+        //TODO change URL Endpoint to the API SERVER
+        https.globalAgent.options.rejectUnauthorized = false;
+        const url = `https://api.ionic-host.de/spamfilter/whitelist/clients/${gid}`
+        const obj = axios.get(url)
+        obj.then(async (response: any) =>{
+            return response.data[0].spamrate
+        })
+        return undefined
+    },
 }
 
 export function getBlackListesWords(gid: CacheTypeReducer<CacheType, Snowflake>): string[]{
     const words: string[] = [];
     let checkGid = "";
-    spamfilter.getBlackListesWords(gid).then(async(response: any) => {
+    spamfilter.getBlackListedWords(gid).then(async(response: any) => {
         for(const key in response.data){
             words.push(response.data[key].blacklisted)
             if (checkGid != response.data[key].gid){
@@ -57,7 +68,7 @@ export function getBlackListesWords(gid: CacheTypeReducer<CacheType, Snowflake>)
 export function getWhiteListesWordsFromSpamFilter(gid: CacheTypeReducer<CacheType, Snowflake>): string[]{
     const words: string[] = [];
     let checkGid = "";
-    spamfilter.getBlackListesWords(gid).then(async(response: any) => {
+    spamfilter.getBlackListedWords(gid).then(async(response: any) => {
         for(const key in response.data){
             words.push(response.data[key].whitelisted)
             if (checkGid != response.data[key].gid){

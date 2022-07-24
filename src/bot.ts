@@ -37,16 +37,15 @@ function startBotRoutine(){
 	console.info('Starting Bot with ENV file ', process.argv[2])
 
 	const tokens = tokensFromEnvFile(process.argv[2])
-	const bot = new CustomDiscordClient({ intents: 8 });
+	const bot = new CustomDiscordClient({ intents: 32767 });
 
 	console.log("Sever Count", bot.guilds.cache.size)
 
 	botjoin(bot)
-	//spamfilter(bot)
 	messageListener(bot)
 	join(bot)
 	interaction(bot)
-	websocket(bot, new Server({ port: 8080 }))
+	websocket(bot, new Server({ port: 21806 }))
 
 	bot.on('ready', () =>{
 		if (bot.user){

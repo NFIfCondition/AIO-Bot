@@ -2,26 +2,26 @@ import https from 'https';
 import axios from 'axios';
 import {CacheType, CacheTypeReducer, Snowflake} from "discord.js";
 
-export interface AioFilter{
+export interface AioFilter {
     getWords: () => Promise<string>,
-    getClients: (gid: CacheTypeReducer<CacheType, Snowflake>, clientid: CacheTypeReducer<CacheType, Snowflake>)=> Promise<string>
+    getClients: (gid: CacheTypeReducer<CacheType, Snowflake>, clientid: CacheTypeReducer<CacheType, Snowflake>) => Promise<string>
 }
 
-export const aiofilter: AioFilter= {
-    getWords: function() {
+export const aioFilter: AioFilter = {
+    getWords: function () {
         https.globalAgent.options.rejectUnauthorized = false;
         const url = `https://api.ionic-host.de/aiospamfilter/request/words`
         return axios.get(url)
     },
-    getClients: function(gid: CacheTypeReducer<CacheType, Snowflake>, clientid: CacheTypeReducer<CacheType, Snowflake>) {
+    getClients: function (gid: CacheTypeReducer<CacheType, Snowflake>, clientid: CacheTypeReducer<CacheType, Snowflake>) {
         https.globalAgent.options.rejectUnauthorized = false;
         const url = `https://api.ionic-host.de/aiospamfilter/request/clients/${clientid}`
         return axios.get(url)
     }
 }
 
-export function containsClientInAIOFilter(gid: CacheTypeReducer<CacheType, Snowflake>, clientid: CacheTypeReducer<CacheType, Snowflake>): string[] | number{
-    aiofilter.getClients(gid, clientid).then(async(response: any) => {
+export function containsClientInAIOFilter(gid: CacheTypeReducer<CacheType, Snowflake>, clientid: CacheTypeReducer<CacheType, Snowflake>): string[] | number {
+    aioFilter.getClients(gid, clientid).then(async (response: any) => {
             for (const key in response.data) {
                 if (response.data[key].clientag == clientid) {
                     return true;
@@ -33,8 +33,8 @@ export function containsClientInAIOFilter(gid: CacheTypeReducer<CacheType, Snowf
     return -1;
 }
 
-export function containsWord(word: string): boolean{
-    aiofilter.getWords().then(async(response: any) => {
+export function containsWord(word: string): boolean {
+    aioFilter.getWords().then(async (response: any) => {
             for (const key in response.data) {
                 if (response.data[key].words == word) {
                     return true;

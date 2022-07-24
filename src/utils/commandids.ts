@@ -1,6 +1,6 @@
 export enum CommandToId{
     Ban = 1,
-    Clearchat = 2,
+    ClearChat = 2,
     Giveaway = 3,
     Invite = 4,
     Kick = 5,
@@ -12,7 +12,7 @@ export enum CommandToId{
 
 export enum CommandName{
     Ban = "Ban",
-    Clearchat = "Clearchat",
+    ClearChat = "Clearchat",
     Giveaway = "Giveaway",
     Invite = "Invite",
     Kick = "Kick",

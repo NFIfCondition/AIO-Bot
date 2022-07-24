@@ -8,6 +8,7 @@ export * from './utils/replaceVars'
 export * from './utils/aiotoken'
 export * from './modules/listener/bot'
 export * from './bot'
+export * from './modules/spamwordfilter'
 
 // API
 export * from './api/aio-filter'
