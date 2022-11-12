@@ -27,7 +27,8 @@ type embed = {
 }
 export class MessageBuilder{
     public constructor(args?: {
-        embed: embed
+        embed: embed,
+        color: string
     }) {
         if (args){
             Object.assign(this, args)
