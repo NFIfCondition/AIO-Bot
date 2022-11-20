@@ -17,6 +17,8 @@ import {commanddeactivatedmessagebuilder} from "../../messagebuilders/commanddea
 import {nopermmessagebuilder} from "../../messagebuilders/nopermmessagebuilder";
 import {kickmessage} from "../../messagebuilders/kickmessagebuilder";
 import {mutemessage} from "../../messagebuilders/mutemessagebuilder";
+import {CommandInteractionOptionResolver} from "discord.js";
+import {SlashCommandBuilder} from "@discordjs/builders";
 
 export function interaction(bot: CustomDiscordClient) {
     bot.on('interactionCreate', async interaction => {
@@ -38,21 +40,19 @@ export function interaction(bot: CustomDiscordClient) {
                 .addFields(
                     {name: 'Webinterface:', value: RedictURLs.website},
                     {name: '\u200B', value: '\u200B'},
-                    {name: 'warn', value: 'Warn User bei Eingestellten Warns erfolgt ein ban oder mute', inline: true},
-                    {name: 'ban', value: 'Bannt einen User vom Discord', inline: true},
-                    {name: 'mute', value: 'Mute einen User in Text Channels', inline: true},
+                    {name: 'warn', value: 'Warn User bei Eingestellten Warns erfolgt ein ban oder mute'},
+                    {name: 'ban', value: 'Bannt einen User vom Discord'},
+                    {name: 'mute', value: 'Mute einen User in Text Channels'},
                     {
                         name: 'timeout <Time>',
-                        value: 'Timeoute einen User dieser kann keinen Channel mehr joinen oder in diesen schreiben',
-                        inline: true
+                        value: 'Timeoute einen User dieser kann keinen Channel mehr joinen oder in diesen schreiben'
                     },
-                    {name: 'invite <Time>', value: 'Erstelle einen Invite Link', inline: true},
+                    {name: 'invite <Time>', value: 'Erstelle einen Invite Link'},
                     {
                         name: 'clearchat',
-                        value: 'Löscht alle Nachrichten in einem Channel (nur bei nachrichten bis 14Tagen möglich)',
-                        inline: true
+                        value: 'Löscht alle Nachrichten in einem Channel (nur bei nachrichten bis 14Tagen möglich)'
                     },
-                    {name: 'kick', value: 'Kickt den User vom Discord', inline: true},
+                    {name: 'kick', value: 'Kickt den User vom Discord'},
                 )
                 .setTimestamp()
                 .setFooter({text: Text.embedFooter, iconURL: RedictURLs.icon});
@@ -118,28 +118,6 @@ export function interaction(bot: CustomDiscordClient) {
                     if (member) {
                         commanddeactivatedmessagebuilder(interaction, CommandName.ClearChat)
                     }
-                }
-            }
-        } else if (interaction.commandName === 'ticketsupport') {
-            //TODO
-            if (activeCommands(interaction.guildId, CommandToId.Ticketsupport) && interaction.options._subcommand) {
-                if (interaction.options._subcommand() === 'create') {
-                    //ticketsupport.create()
-                } else if (interaction.options._subcommand() === 'add') {
-                    //ticketsupport.add()
-                } else if (interaction.options._subcommand() === 'remove') {
-                    //ticketsupport.remove()
-                } else if (interaction.options._subcommand() === 'close') {
-                    //ticketsupport.close()
-                } else if (interaction.options._subcommand() === 'archive') {
-                    //ticketsupport.archive()
-                } else if (interaction.options._subcommand() === 'delete') {
-                    //ticketsupport.delete(bot, interaction.channelId)
-                }
-            } else {
-                const member = interaction.member
-                if (member) {
-                    commanddeactivatedmessagebuilder(interaction, CommandName.Ticketsupport)
                 }
             }
         } else if (interaction.commandName === "invite") {

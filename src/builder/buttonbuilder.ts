@@ -28,7 +28,7 @@ export function createMultiButtonOnEmbed(btn: buttonComponent[]){
 }
 export class ButtonBuilder {
     public style = 1
-    public label = "nothing"
+    public label = "Error"
     public custom_id?: string
     public url?: string
     public disabled = false

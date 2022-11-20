@@ -22,13 +22,19 @@ type embed = {
     thumbnail: URL,
     fields: fieldobj[],
     timestamp: boolean,
-    footer: footerobj,
+    footer: footerobj
 
 }
 export class MessageBuilder{
     public constructor(args?: {
-        embed: embed,
-        color: string
+        color: string,
+        title: string,
+        url: URL,
+        author: authorobj,
+        thumbnail: URL,
+        fields: fieldobj[],
+        timestamp: boolean,
+        footer: footerobj,
     }) {
         if (args){
             Object.assign(this, args)
