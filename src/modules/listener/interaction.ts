@@ -62,7 +62,7 @@ export function interaction(bot: CustomDiscordClient) {
                 if (activeCommands(interaction.guildId, CommandToId.ClearChat)) {
                     if (interaction.guild && interaction.member) {
                         if (!(!(interaction.member instanceof GuildMember) || interaction.member.partial)) {
-                            const _roles = interaction.member._roles
+                            const _roles = interaction.member.roles
                             if (_roles != null) {
                                 if (ContainsRolesInClearChat(interaction.guildId, _roles)) {
                                     const valueInter = interaction.options.data[0]
@@ -120,29 +120,7 @@ export function interaction(bot: CustomDiscordClient) {
                     }
                 }
             }
-        } else if (interaction.commandName === 'ticketsupport') {
-            //TODO
-            if (activeCommands(interaction.guildId, CommandToId.Ticketsupport) && interaction.options._subcommand) {
-                if (interaction.options._subcommand() === 'create') {
-                    //ticketsupport.create()
-                } else if (interaction.options._subcommand() === 'add') {
-                    //ticketsupport.add()
-                } else if (interaction.options._subcommand() === 'remove') {
-                    //ticketsupport.remove()
-                } else if (interaction.options._subcommand() === 'close') {
-                    //ticketsupport.close()
-                } else if (interaction.options._subcommand() === 'archive') {
-                    //ticketsupport.archive()
-                } else if (interaction.options._subcommand() === 'delete') {
-                    //ticketsupport.delete(bot, interaction.channelId)
-                }
-            } else {
-                const member = interaction.member
-                if (member) {
-                    commanddeactivatedmessagebuilder(interaction, CommandName.Ticketsupport)
-                }
-            }
-        } else if (interaction.commandName === "invite") {
+         } else if (interaction.commandName === "invite") {
             if (interaction.guild && interaction.channel) {
                 if (activeCommands(interaction.guildId, CommandToId.Invite)) {
                     const params = interaction.options.data[0]
