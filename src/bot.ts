@@ -31,14 +31,12 @@ import './utils/replaceVars.js'
 //}
 
 async function startBotRoutine() {
-
-
 	if (await ModuleActive("testgid", ModuleNamesToID.Chatclear) == ReturnTypes.TRUE){
 		console.log("JAAAAAAAA")
 	} else if (await ModuleActive("testgid", ModuleNamesToID.Chatclear) == ReturnTypes.FALSE) {
 		console.log("NEIN")
 	} else if (await ModuleActive("testgid", ModuleNamesToID.Chatclear) == ReturnTypes.WAITING) {
-			console.log("WAITING")
+		console.log("WAITING")
 	}
 
 	console.info('Starting Bot with ENV file ', process.argv[2])

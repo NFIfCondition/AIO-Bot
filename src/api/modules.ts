@@ -20,7 +20,6 @@ export function ModuleActive(gid: CacheTypeReducer<CacheType, Snowflake>, module
     modules.getActiveModules(gid).then(async(response: any) => {
             for (const key in response.data) {
                 if (response.data[key].mid == module) {
-                    console.log("HS")
                     return ReturnTypes.TRUE
                 }
             }

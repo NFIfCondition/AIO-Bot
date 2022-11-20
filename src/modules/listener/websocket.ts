@@ -5,7 +5,7 @@ import { CustomDiscordClient } from '../../CustomDiscordClient';
 import {RedictURLs, Text} from '../../index';
 
 export function websocket(bot: CustomDiscordClient, wss: Server){
-    console.log("offen")
+    console.log("Websocket Established")
     wss.on('connection', function connection(ws) {
         console.log("Interface connected! Action revicived!");
         ws.on('message', function message(data) {
