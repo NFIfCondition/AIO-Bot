@@ -1,6 +1,6 @@
 import https from 'https';
 import axios from 'axios';
-import {CacheType, CacheTypeReducer, Snowflake} from "discord.js";
+import {CacheType, CacheTypeReducer, GuildMemberRoleManager, Snowflake} from "discord.js";
 
 import {ReturnTypes} from "./../index"
 
@@ -41,7 +41,7 @@ export function ContainsClientInClearChat(gid: CacheTypeReducer<CacheType, Snowf
     return ReturnTypes.WAITING;
 }
 
-export function ContainsRolesInClearChat(gid: CacheTypeReducer<CacheType, Snowflake>, role: CacheTypeReducer<CacheType, Snowflake>): ReturnTypes{
+export function ContainsRolesInClearChat(gid: CacheTypeReducer<CacheType, Snowflake>, role: GuildMemberRoleManager): ReturnTypes{
     clearchat.getAllowedRoles(gid).then(async(response: any) => {
             for (const key in response.data) {
                 if (response.data[key].roleid == role) {
