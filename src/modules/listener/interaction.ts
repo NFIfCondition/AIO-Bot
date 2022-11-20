@@ -86,7 +86,7 @@ export function interaction(bot: CustomDiscordClient) {
                                     Chatclearmessage(member, interaction)
                                 }
                             }
-                            if (!ContainsRolesInClearChat(interaction.guildId, interaction.member.id) && !ContainsClientInClearChat(interaction.guildId, interaction.member.id)) {
+                            if (!ContainsClientInClearChat(interaction.guildId, interaction.member.id) && !ContainsClientInClearChat(interaction.guildId, interaction.member.id)) {
                                 const member = interaction.member
                                 if (member) {
                                     const cleared = new EmbedBuilder()
