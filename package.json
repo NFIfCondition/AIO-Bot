@@ -23,7 +23,11 @@
     "@types/bad-words": "3.0.1",
     "@typescript-eslint/eslint-plugin": "5.43.0",
     "discord-api-types": "0.37.18",
+<<<<<<< HEAD
     "eslint": "8.28.0",
+=======
+    "eslint": "8.27.0",
+>>>>>>> messagebuilder
     "typescript": "4.9.3"
   }
 }
