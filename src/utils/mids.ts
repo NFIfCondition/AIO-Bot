@@ -9,6 +9,7 @@ export enum ModuleNamesToID{
     Aiospamfilter = 8,
     Streamer = 9,
     Aioclientfilter = 10,
+    
     AntiBot = 11,
     AntiNuke = 12,
     Antirole = 13,
@@ -26,6 +27,7 @@ export enum ModuleNames{
     Aiospamfilter = "aiospamfilter",
     Streamer = "streamer",
     Aioclientfilter = "aioclientfilter",
+
     AntiBot = "antibot",
     AntiNuke = "antinuke",
     Antirole = "antirole",
