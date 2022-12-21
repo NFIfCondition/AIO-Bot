@@ -1,5 +1,6 @@
 import {CategoryChannelResolvable, PermissionsBitField} from 'discord.js'
 import { CustomDiscordClient } from '../CustomDiscordClient'
+import {interaction} from "./listener/interaction";
 
 export interface TicketSupportInterface{
         create: (bot: CustomDiscordClient, name: string,  guildid: string, channelsectionid: string, teamsupportroleids: string, teamadminroleids: string, userid: string) => void
@@ -16,18 +17,32 @@ export const ticketsupport: TicketSupportInterface = {
                 const cat = await bot.fetchChannel(channelsectionid)
                 const teamroles = teamsupportroleids.split(",")
                 const adminroles = teamadminroleids.split(",")
-                const perms = [{id:userid, allow:[PermissionsBitField.Flags.ViewChannel, PermissionsBitField.Flags.SendMessages]}];
+                const perms = [
+                    {
+                            id: guildid,
+                            deny: [PermissionsBitField.Flags.ViewChannel],
+                    },
+                    {
+                            id: userid,
+                            allow: [PermissionsBitField.Flags.ViewChannel],
+                    }
+                ];
 
                 for(const key of teamroles){
-                        perms.push({id:key, allow:[PermissionsBitField.Flags.ViewChannel, PermissionsBitField.Flags.SendMessages]})
+                        perms.push({
+                                id: key,
+                                allow: [PermissionsBitField.Flags.ViewChannel],
+                        },)
                 }
 
                 for(const key of adminroles){
-                        perms.push({id:key, allow:[PermissionsBitField.Flags.ViewChannel, PermissionsBitField.Flags.SendMessages]})
-                }
-                
+                        perms.push({
+                                id: key,
+                                allow: [PermissionsBitField.Flags.ViewChannel],
+                        },)                }
+
                 if (guild && cat){
-                        await guild.channels.create({
+                        const channel = await guild.channels.create({
                                 name: name,
                                 parent:cat as CategoryChannelResolvable,
                                 permissionOverwrites: perms

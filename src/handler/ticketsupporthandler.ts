@@ -1,33 +1,26 @@
-import {CacheType, CacheTypeReducer, CategoryChannel, Channel, Snowflake, User} from "discord.js";
+import {CustomDiscordClient} from "../CustomDiscordClient";
+import {ticketsupport} from "../modules/ticketsupport";
 
-import {ReturnTypes} from '../index'
-
-export interface TicketSupportHandler{
-    create: (gid: CacheTypeReducer<CacheType, Snowflake>, client: User, section: CategoryChannel, team: Record<string, any>) => ReturnTypes | Channel,
-    add: (gid: CacheTypeReducer<CacheType, Snowflake>, client: User, ticket: Channel) => ReturnTypes,
-    remove: (gid: CacheTypeReducer<CacheType, Snowflake>, client: User, ticket: Channel) => ReturnTypes,
-    close: (gid: CacheTypeReducer<CacheType, Snowflake>, client: User, ticket: Channel) => ReturnTypes,
-    archive: (gid: CacheTypeReducer<CacheType, Snowflake>, client: User, ticket: Channel, section: CategoryChannel) => ReturnTypes,
-    delete: (gid: CacheTypeReducer<CacheType, Snowflake>, client: User, ticket: Channel) => ReturnTypes,
+export async function ticketsupporthandler(bot: CustomDiscordClient, interaction: any){
+            console.log("123")
+            if (interaction.options.getSubcommand() === "create") {
+                //Pass
+                ticketsupport.create(bot, "Ticket " , "932028932486754345", "1036315870781255842", "932029140381622302,932029140381622302", "932029140381622302,932029140381622302", "213551786009559040");
+            } else if (interaction.options.getSubcommand() === "add") {
+                //Pass
+                //ticketsupport.add(bot, );
+            } else if (interaction.options.getSubcommand() === "remove") {
+                //Pass
+                //ticketsupport.remove(bot, );
+            } else if (interaction.options.getSubcommand() === "close") {
+                //Pass
+                //ticketsupport.close(bot, );
+            } else if (interaction.options.getSubcommand() === "archive") {
+                //Pass
+                //ticketsupport.archive(bot, );
+            } else if (interaction.options.getSubcommand() === "delete") {
+                //Pass
+                //ticketsupport.delete(bot, );
+            }
 }
 
-export const ticketsupporthandler : TicketSupportHandler = {
-    create : function (gid: CacheTypeReducer<CacheType, Snowflake>, client: User, section: CategoryChannel, team: Record<string, any>){
-        return ReturnTypes.FAIL
-    },
-    add: function (gid: CacheTypeReducer<CacheType, Snowflake>, client: User, ticket: Channel){
-        return ReturnTypes.FAIL
-    },
-    remove: function (gid: CacheTypeReducer<CacheType, Snowflake>, client: User, ticket: Channel){
-        return ReturnTypes.FAIL
-    },
-    close: function (gid: CacheTypeReducer<CacheType, Snowflake>, client: User, ticket: Channel){
-        return ReturnTypes.FAIL
-    },
-    archive: function (gid: CacheTypeReducer<CacheType, Snowflake>, client: User, ticket: Channel){
-        return ReturnTypes.FAIL
-    },
-    delete: function (gid: CacheTypeReducer<CacheType, Snowflake>, client: User, ticket: Channel){
-        return ReturnTypes.FAIL
-    }
-}

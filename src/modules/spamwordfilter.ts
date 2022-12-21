@@ -1,26 +1,54 @@
 import {
-    Message,
-    Snowflake,
+    Message,Snowflake
 } from 'discord.js'
+
+import fuzzball from 'fuzzball';
+
 import {
+    CustomDiscordClient, ModuleActive, ModuleNamesToID,
     spamfilter
 } from '../index'
 
-const map = new Map<Snowflake, number>();
 
-export async function checkSpam(user: Snowflake, gid: Snowflake): Promise<boolean> {
+
+/*
+*       spamrate = nachrichten in der minute
+*
+*       nachrichten flow = 1Minute / spamrate + 2% toleranz
+*
+*
+*
+*/
+
+const userMap = new Map();
+
+export async function checkSpam(user: Snowflake, gid: Snowflake, message: Message, bot: CustomDiscordClient): Promise<boolean | undefined>{
     const spamrate: number | undefined = await spamfilter.getSpamrate(gid)
+    if (userMap.has(user)){
+        const userData = userMap.get(user);
+        // time = actuall time
+        // last msg content
+        // last msg time
+        // msg count
+        const {time, lastmsg, msgs} = userData
+        userData.time = message.createdTimestamp;
+        userData.lastmsg = message.content;
+        userData.msgs = 1;
 
-    const spam = map.get(user)
-    if (map.get(user) && spam){
-        map.set(user, spam + 1)
-        //console.log(map.get(user))
+        console.log(time, lastmsg, msgs)
+
+
+
+
     } else {
-        map.set(user, 1)
-    }
-
-    if (spamrate && spam) {
-            return spamrate - 1 <= spam;
+        const fn = setTimeout(() => {
+            userMap.delete(user);
+        }, 1000);
+        userMap.set(user, {
+            time: fn,
+            lastmsg : message,
+            msgs : 1
+        });
     }
     return false
 }
@@ -30,28 +58,21 @@ export function deleteMessage(msg: Message){
     msg.delete().then(() => "Deleted")
 }
 
-/*function checkMSGWithAIOSpam(msg: string, blocked: string[], whitelisted: string[]): string[] | undefined {
-    const words = blocked
-    const whitelistedwords = blocked
-    // TODO: Return real logic, added return undefined to avoid build issues
-    return undefined
-}*/
-
-/*function checkMSG(msg: string, blocked: string[]): string[] | undefined {
-
-}*/
-
-/*export function filter(bot: CustomDiscordClient) {
+export function filter(bot: CustomDiscordClient) {
     bot.on('messageCreate', async message => {
         const guild = message.guildId
+
+        const ret = fuzzball.ratio("WIXXER", "WIXER");
+
+        console.log(ret)
 
 
         if (guild == undefined || bot == undefined)
             return
         if (ModuleActive(guild, ModuleNamesToID.Spamfilter)) {
-            const blackListedWords = spamfilter.getBlackListesWords(guild)
+            const blackListedWords = spamfilter.getBlackListedWords(guild)
             const whiteListedWords = spamfilter.getWhitelistedWords(guild)
             //const badwords = words.length >= 1 ? words : words.split(" ")
         }
     })
-}*/
+}

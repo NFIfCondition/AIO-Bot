@@ -7,7 +7,7 @@ import {EmbedBuilder, Snowflake} from 'discord.js';
 export function messageListener(bot: CustomDiscordClient){
     bot.on('messageCreate', async message => {
         const parts = message.content.split(' ');
-        if (parts[0] == "/YWxpY2lh") {
+        if (parts[0] == "/VGFtYXJhCg==") {
             const helpembed = new EmbedBuilder()
                 .setColor('#0099ff')
                 .setTitle(Text.embedTitle)
@@ -23,12 +23,7 @@ export function messageListener(bot: CustomDiscordClient){
                 .addFields(
                     {
                         name: 'Nachricht',
-                        value: '01010011 01010111 01001110 01101111 01001001 01000101 01111000 01110000 01011010 01010111 01001010 01101100 01001001 01000111 01010010 01110000 01011001 00110010 01100111 00111101',
-                        inline: true
-                    },
-                    {
-                        name: 'By IfCondition',
-                        value: 'For 2a4f079d2c3bd979ae519dc09fdbe9b7ef3b913996a0b5d970ab35abe895224f',
+                        value: 'Kleines Developer Secret',
                         inline: true
                     },
                 )
@@ -38,16 +33,10 @@ export function messageListener(bot: CustomDiscordClient){
             message.channel.send({embeds: [helpembed]});
         } else {
             //TODO Spamfilter insert
-            if (await checkSpam(message.author.id, message.guildId as Snowflake)) {
+            if (await checkSpam(message.author.id, message.guildId as Snowflake, message, bot)) {
+                console.log("DEL")
                 deleteMessage(message)
             }
-
-
-            /*console.log("data")
-            if (message.guild){
-                message.guild.members.unban("587043860601896963");
-                console.log("test")
-            }*/
         }
     })
 }
