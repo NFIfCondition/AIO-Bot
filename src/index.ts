@@ -32,3 +32,6 @@ export * from './messagebuilders/streammessagebuilder'
 //BuilderClasses
 export * from './builder/buttonbuilder'
 export * from './builder/multiselectbuilder'
+
+//CommandHandler
+export * from './handler/ticketsupporthandler'

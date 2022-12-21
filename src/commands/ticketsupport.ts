@@ -1,13 +1,10 @@
 import {
-    ComponentBuilder,
-    SelectMenuBuilder,
-    SelectMenuOptionBuilder,
     SlashCommandUserOption
 } from "@discordjs/builders";
 import {SlashCommandStringOption} from "@discordjs/builders";
 import {SlashCommandBuilder, SlashCommandSubcommandBuilder} from "@discordjs/builders";
-import {CommandInteractionOptionResolver} from "discord.js";
-import {APISelectMenuComponent} from "discord-api-types/v10";
+import {ticketsupport} from "../modules/ticketsupport";
+import {CustomDiscordClient} from "../CustomDiscordClient";
 
 export = {
     data: new SlashCommandBuilder()
@@ -40,20 +37,4 @@ export = {
             subcommand
                 .setName('delete')
                 .setDescription('Löscht das Ticket')),
-
-    async execute(interaction: any){
-        if (interaction.options.getSubcommand() === "create"){
-            //Pass
-        } else if (interaction.options.getSubcommand() === "add"){
-            //Pass
-        } else if (interaction.options.getSubcommand() === "remove"){
-            //Pass
-        } else if (interaction.options.getSubcommand() === "close"){
-            //Pass
-        } else if (interaction.options.getSubcommand() === "archive"){
-            //Pass
-        } else if (interaction.options.getSubcommand() === "delete"){
-            //Pass
-        }
-    }
-};
+}

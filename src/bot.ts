@@ -1,4 +1,4 @@
-import {AioTokens, botjoin, ModuleActive, ModuleNamesToID, ReturnTypes, tokensFromEnvFile} from './index'
+import {AioTokens, botjoin, filter, ModuleActive, ModuleNamesToID, ReturnTypes, tokensFromEnvFile} from './index'
 
 import {CustomDiscordClient} from './CustomDiscordClient'
 import {REST} from "@discordjs/rest"
@@ -51,6 +51,7 @@ async function startBotRoutine() {
 	join(bot)
 	interaction(bot)
 	websocket(bot, new Server({port: 21806}))
+	filter(bot);
 
 	bot.on('ready', () => {
 		if (bot.user) {

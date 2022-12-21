@@ -7,8 +7,10 @@ import {
     Invitemessage,
     RedictURLs,
     Text,
+    ticketsupporthandler,
 } from './../../index'
-import {EmbedBuilder, GuildInvitableChannelResolvable, GuildMember, PermissionsBitField,} from 'discord.js'
+import ticketsupport from "./../../commands/ticketsupport"
+import {EmbedBuilder, GuildInvitableChannelResolvable, GuildMember, PermissionsBitField} from 'discord.js'
 import {APIInteractionGuildMember} from "discord-api-types/v10";
 import {activeCommands} from "../../api/commands";
 import {CommandName, CommandToId} from "../../utils/commandids";
@@ -21,6 +23,9 @@ import {SlashCommandBuilder} from "@discordjs/builders";
 
 export function interaction(bot: CustomDiscordClient) {
     bot.on('interactionCreate', async interaction => {
+
+        await ticketsupporthandler(bot, interaction)
+
         if (!interaction.isCommand()) return;
         const channel = await bot.getChannelFromCache(interaction.channelId)
         const member = interaction.member as GuildMember | APIInteractionGuildMember
@@ -119,11 +124,7 @@ export function interaction(bot: CustomDiscordClient) {
                     }
                 }
             }
-<<<<<<< HEAD
-         } else if (interaction.commandName === "invite") {
-=======
         } else if (interaction.commandName === "invite") {
->>>>>>> messagebuilder
             if (interaction.guild && interaction.channel) {
                 if (activeCommands(interaction.guildId, CommandToId.Invite)) {
                     const params = interaction.options.data[0]
